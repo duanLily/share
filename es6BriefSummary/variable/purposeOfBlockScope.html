@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>purposeOfBlockScope</title>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+</body>
+<script>
+  window.onload = function () {
+    var aBtn = document.getElementsByTagName("input");
+    /*for (var i = 0; i < aBtn.length; i++) {
+      aBtn[i].onclick = function () {
+        console.log(i);  // 3 3 3
+      }
+    }*/
+
+   /* for (var i = 0; i < aBtn.length; i++) {
+      (function (i) {
+        aBtn[i].onclick = function () {
+          console.log(i);  // 0 1 2
+        }
+      })(i);
+    }*/
+
+     for (let i = 0; i < aBtn.length; i++) {
+       aBtn[i].onclick = function () {
+         console.log(i)  // 0 1 2
+       }
+     }
+  }
+</script>
+</html>

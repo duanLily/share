@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>arrowFunction</title>
+</head>
+<body>
+<button onclick="func(111)">function</button>
+<button onclick="arrow(222)">arrowFunction</button>
+<button onclick="arrowF(2)">arrowFunction{}</button>
+</body>
+<script>
+  /**
+   * 箭头函数
+   *  1、只有一个参数，()可省略
+   *  2、只有一个return，{}可省略
+   */
+  function func(a) {
+    console.log(a)
+  }
+  arrow = a => {
+    console.log(a)
+  };
+
+  let arrow1 = a => a * 10;
+  arrowF = (a) => {
+    console.log(arrow1(a));
+  };
+
+
+  let arr = [2, 1, 98, 43, 21, 89, 100];
+  /*arr.sort(function (a, b) {
+    return a - b;
+  });*/
+ /* arr.sort((a, b) => {
+    return a - b;
+  });*/
+  arr.sort((a, b) => a - b);
+
+  console.log(arr);
+</script>
+</html>
