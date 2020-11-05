@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逻辑运算符</title>
+</head>
+<body>
+<script>
+    // 逻辑短路
+    // 与逻辑：第一个条件已经是false，不管第二个条件是啥，整个的结果都是false。所以这个时候第二个条件就不会去判断了
+    var num = 20
+    // 表达式如果第一个条件是false，那么就短路，整个表达式的结果就是false，如果第一个条件为true，那么结果就为后半部分的值
+    var is = num > 10 && num+1
+    console.log(is)
+    // 表达式如果第一个条件是true，那么就短路，整个表达式的结果就是true，如果第一个条件为false，那么结果就为后半部分的值
+    var res = num < 10 || num+1
+    console.log(res)
+</script>
+</body>
+</html>

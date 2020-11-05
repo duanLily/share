@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类型转换</title>
+</head>
+<body>
+<script>
+    var num = 0.1 + 0.7
+    console.log(num)
+    console.log(num.toFixed(3)) // 保留三位小数，保留之后变为字符串了
+    var str = '20.3px'
+    // 遇到非数字字符或者第一个小数点就结束
+    console.log(parseInt(str))
+    // 遇到非数字字符或者第二个小数点就结束
+    console.log(parseFloat(str))
+    // 只要字符串里有非数字就得到NaN
+    console.log(Number(str))
+</script>
+</body>
+</html>

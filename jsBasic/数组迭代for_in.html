@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组迭代for in</title>
+  <script src="./js/jquery.min.js"></script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+  var tablehead = ["原型链", "无原型链"],
+      arr = [4, 53, 32, 5];
+  Array.prototype.x = 'proto';
+  window.onload = ()=> {
+    var body = document.body,
+        container = document.createElement("div"),
+        table = document.createElement("table"),
+        tr = document.createElement("tr");
+    body.appendChild(container);
+    container.appendChild(table);
+    table.appendChild(tr);
+    table.setAttribute("border","1");
+    for (var i = 0; i < tablehead.length; i++) {
+      var th = document.createElement("th");
+      th.setAttribute("style", "text-align: center;");
+      th.innerHTML = tablehead[i];
+      tr.appendChild(th);
+    }
+    for (i in arr) {
+      const tr = document.createElement("tr"),
+          td = document.createElement("td");
+      table.appendChild(tr);
+      td.setAttribute("style", "text-align: center;");
+      td.innerHTML = arr[i];
+      tr.appendChild(td);
+      console.log(arr[i]);
+      if (arr.hasOwnProperty(i)) {
+        console.log("++++++++" + arr[i]);
+        const td2 = document.createElement("td");
+        td2.setAttribute("style", "text-align: center;");
+        td2.innerHTML = arr[i];
+        tr.appendChild(td2);
+      }
+    }
+  };
+</script>
+</html>

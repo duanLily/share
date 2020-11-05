@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>探测器实现</title>
+</head>
+<body>
+探测器实现
+</body>
+<script type="text/javascript">
+  !function (global) {
+    function detectorBase(configs) {
+      if(!this instanceof detectorBase){
+        throw new Error('Do not invoke without new.');
+      }
+      this.configs = configs;
+      this.analyze();
+    };
+
+    detectorBase.prototype.detect = function () {
+      throw new Error('Not implemented.');
+    };
+
+    detectorBase.prototype.analyze=function () {
+      console.log('analyzing...');
+      this.data = '###data###';
+    };
+
+    function linkDetector(links) {
+      if (!this instanceof linkDetector){
+        throw new Error('Do not invoke without new.');
+      }
+      this.links = links;
+      detectorBase.apply(this,arguments);
+    };
+
+    function containerDetector(containers) {
+      if (!this instanceof containerDetector){
+        throw new Error('Do not invoke without new.');
+      }
+      this.containers = containers;
+      detectorBase.apply(this,arguments);
+    };
+
+  //  inherit first
+    inherit(linkDetector,detectorBase);
+    inherit(containerDetector,linkDetector);
+  //  expand later
+    linkDetector.prototype.detect=function () {
+      console.log('Loading data:' +this.data);
+      console.log('Link detection started.');
+      console.log('Scanning containers:' +this.containers);
+    };
+  //  prevent from being altered
+    Object.freeze(detectorBase);
+    Object.freeze(detectorBase.prototype);
+    Object.freeze(linkDetector);
+    Object.freeze(linkDetector.prototype);
+    Object.freeze(containerDetector);
+    Object.freeze(containerDetector.prototype);
+  //  export to global object
+    Object.defineProperties(global,{
+      linkDetector:{value:linkDetector},
+      containerDetector:{value:containerDetector},
+      detectorBase:{value:detectorBase}
+    });
+
+    function inherit(subClass,superClass) {
+      subClass.prototype = Object.create(superClass.prototype);
+      subClass.prototype.constructor = subClass;
+    };
+  }(this);
+  var cd = new containerDetector('#abc #def #ghi');
+  var ld = new linkDetector('http://www.taobao.com http://www.tmall.com http://baidu.com');
+  cd.detect();
+  ld.detect();
+</script>
+</html>

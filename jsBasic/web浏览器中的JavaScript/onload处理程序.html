@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>onload处理程序</title>
+</head>
+<body>
+<div class="reveal">
+  <h1 class="handle">Click Here toReveal Hidden Text</h1>
+  <p>This paragraph is hidden . It appears when you click on the title.</p>
+</div>
+</body>
+<style>
+  .reveal * {
+    display: none;
+  }
+
+  .revealed * {
+    display: block;
+  }
+
+  .reveal *.handle {
+    display: block;
+  }
+</style>
+<script>
+  window.onload = () => {
+    var elements = document.getElementsByClassName("reveal");
+    for (let i = 0; i < elements.length; i++) {
+      let ele = elements[i];
+      let title = ele.getElementsByClassName("handle")[0];
+      addRevealHandle(title, ele);
+    }
+    function addRevealHandle(a, b) {
+      a.onclick = () => {
+        if (b.className == "reveal") {
+          b.className = "revealed";
+        } else if (b.className == "revealed") {
+          b.className = "reveal";
+        }
+      }
+    }
+  };
+</script>
+</html>

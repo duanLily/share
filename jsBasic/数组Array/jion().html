@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>join</title>
+</head>
+<body>
+join
+</body>
+<script type="text/javascript">
+  /*
+   * join()方法
+   * 将数组中所有元素转化为字符串并连接在一起，返回最后生成的字符串。
+   */
+  const a = [1, 2, 3];
+  // 可指定分隔符,不指定时默认逗号分隔
+  console.log(a.join());    //不指定
+  console.log(a.join(" ")); // 空格分隔
+  console.log(a.join(""));  // 无分隔符
+  const aa = new Array(5);
+  console.log(aa.join("-"));
+</script>
+</html>

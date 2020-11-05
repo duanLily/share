@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>计时器setTimeout()、setInterval()</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+  /**
+   *   setTimeout()
+   *   实现一个函数在指定毫秒数之后运行。返回一个值，这个值可以传递给clearTimeout()用于取消这个函数的执行；
+   */
+  setTimeout(ff(true), 3000);
+  /**
+   *   setInterval()
+   *   实现一个函数在指定毫秒数的间隔里重复调用。返回一个值，这个值可以传递给clearInterval()用于取消后续函数的调用；
+   */
+  setInterval(ff(false), 1000);
+
+  function ff(str) {
+    str ? console.log("setTimeout") : console.log("setInterval");
+  }
+</script>
+</html>

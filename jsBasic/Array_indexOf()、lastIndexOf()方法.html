@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array_indexOf()、lastIndexOf()方法</title>
+</head>
+<body>
+Array_indexOf()、lastIndexOf()方法
+<script type="text/javascript">
+  var arr = [1, 2, 3, 2,1];
+
+  console.log(arr.indexOf(2));//1
+  console.log(arr.indexOf(99));// -1
+  console.log(arr.indexOf(1,1));// 4
+  console.log(arr.indexOf(1,-3));// 4
+  console.log(arr.indexOf(2,-1));//
+  console.log(arr.lastIndexOf(2));
+  console.log(arr.lastIndexOf(2,-2));
+  console.log(arr.lastIndexOf(2,-3));
+</script>
+</body>
+</html>

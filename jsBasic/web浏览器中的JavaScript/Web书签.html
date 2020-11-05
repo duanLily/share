@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web书签</title>
+</head>
+<body>
+JavaScript：URL  也可以被当做事件处理程序。
+事件驱动阶段：第一个事件是load事件
+<a href='javascript:
+   let e ="",r="";
+   do{
+      e=prompt("Expression:"+e+"\n"+r+"\n",e);
+      try{
+        r="Result:"+eval(e);
+      }catch (ex) { r=ex;}  //计算表达式
+   }while (e);// 记住这个错误
+   void 0;  // 防止当前文档被覆盖
+'>Web书签</a>
+</body>
+</html>

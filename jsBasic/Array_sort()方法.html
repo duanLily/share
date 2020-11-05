@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array_sort()方法</title>
+</head>
+<body>
+Array_sort()方法
+<script type="text/javascript">
+  var arr = [1, 55, 77542, 12, 32, 23, 7];
+  arr.sort();
+  console.log("原数组："+arr);
+  // 升序
+  arr.sort((a, b) => {
+    return a - b;
+  });
+  console.log("升序数组："+arr);
+  // 降序
+  arr.sort((a, b) => {
+    return b - a;
+  });
+  console.log("降序数组："+arr);
+</script>
+</body>
+</html>

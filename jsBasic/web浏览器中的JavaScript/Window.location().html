@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>location跳转页面</title>
+</head>
+<body>
+<form action="http://www.taobao.com">
+  <button type="submit" formtarget="_blank">click</button>
+</form>
+<div id="time">
+  <button id="btn">是时间查看百度了</button>
+</div>
+</body>
+<script type="text/javascript">
+  // location 属性，跳转到新的web界面去
+  // window.location = "http://www.baidu.com";
+
+  // 定时器，等待2秒，然后说Hello
+  /*setTimeout(() => {
+    alert("hello world!");
+  }, 2000);*/
+
+  // 根据id获取文档元素
+  const timeId = document.getElementById("time");
+  timeId.appendChild(document.createElement('br'));
+  timeId.appendChild(document.createTextNode(new Date().toDateString()));
+  timeId.appendChild(document.createElement('br'));
+  timeId.appendChild(document.createTextNode(new Date().toString()));
+  timeId.appendChild(document.createElement('br'));
+  timeId.appendChild(document.createTextNode(new Date().toISOString()));
+  timeId.appendChild(document.createElement('br'));
+  timeId.appendChild(document.createTextNode(new Date().toLocaleDateString()));
+  timeId.style.color = "lightblue";
+  // 获取到节点后，还能绑定相应的事件
+  const b = document.getElementById("btn");
+  b.style.color = "pink";
+  // 点击事件
+  b.onclick = () => {
+    window.location = "http://www.baidu.com";
+  };
+  // 聚焦事件
+  b.onfocus = () => {
+    b.style.color = "red"
+  }
+</script>
+</html>
