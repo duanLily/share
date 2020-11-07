@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>deconstruction</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * 解构赋值
+   *  1、左右结构必须一致
+   *  2、右边必须是个东西
+   *  3、声明和赋值不能分开（必须在一句话里面）
+   */
+  let [a,b,c] = [1,2,3];
+  console.log(a,b,c);
+  // let {e,f,g} = {a:11,b:12,c:13}; // 不可行，参数对应不上
+  let {e,f,g} = {e:11,f:12,g:13};
+  console.log(e,f,g);
+
+  // let [{x,y},[n1,n2,n3],z,q] = [{x:12,y:5},[1,23,4],8,'test'];
+  // console.log(x,y,n1,n2,n3,z,q);
+  // let [json,[n1,n2,n3],z,q] = [{x:12,y:5},[1,23,4],8,'test'];
+  // console.log(json,n1,n2,n3,z,q);
+  let [json,arr,z,q] = [{x:12,y:5},[1,23,4],8,'test'];
+  console.log(json,arr,z,q);
+
+  // let {m,n} = {12,5}; // 右边不合法，右边得是一个json
+  // console.log(m,n);
+
+  let [xx,yy]=[12,5];
+/*  let [xx,yy];
+  [xx,yy] =[12,5];*/
+  console.log(xx,yy);
+
+</script>
+</html>

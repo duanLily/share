@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>func</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * 函数的参数：
+   *  1、参数扩展/展开
+   *    1）、收集剩余的参数 function show(a,b,...args){}
+   *      **Rest Parameter 必须是最后一个
+   *    2）、展开数组
+   *      **展开后的数组，和直接把数组内容写在这一样
+   *  2、默认参数
+   *    传值时，默认值；不传值，默认默认值
+   */
+  // 收集剩余的参数
+  show(1, 2, 56, 7, 3, 2, 3, 0);
+
+  function show(a, b, ...args) {
+    console.log(a, b);
+    console.log(...args);
+  }
+
+  // 展开数组
+  let arr = [2, 4, 6];
+  expanShow(...arr);
+
+  function expanShow(a, b, c) {
+    console.log(a);
+    console.log(b);
+    console.log(c);
+  }
+
+  // 意外
+  /* let ar=[1,2,3];
+   a = ...ar;
+   console.log(a)*/
+
+  // 默认参数
+  defaultShow(99,66);
+  function defaultShow(a, b = 4, c = 10) {
+    console.log(a, b, c);
+  }
+</script>
+</html>

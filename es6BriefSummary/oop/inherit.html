@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>inherit</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * 继承
+   */
+  class User {
+    constructor(name, pass) {
+      this.name = name;
+      this.pass = pass;
+    };
+
+    showName() {
+      console.log(this.name)
+    };
+
+    showPass() {
+      console.log(this.pass)
+    };
+  }
+  class VipUser extends User{
+    constructor(name,pass,level) {
+      super(name,pass);
+      this.level=level;
+    };
+    showLevel() {
+      console.log(this.level)
+    };
+  }
+  let v1 = new VipUser("green","123456",3);
+  v1.showName();
+  v1.showPass();
+  v1.showLevel();
+</script>
+</html>
