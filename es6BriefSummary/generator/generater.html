@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>generator</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * generator 生成器
+   *  推一步，走一步，在yield处暂停
+   */
+  function* show() {
+    alert("a");
+    yield;
+    alert("b");
+  }
+
+  let gen = show();
+  gen.next();
+  gen.next();
+</script>
+</html>

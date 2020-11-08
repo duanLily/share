@@ -10,8 +10,25 @@
 <script>
   /**
    * jsonObject  json对象
+   *  1、JSON.stringify
+   *  2、JSON.parse
+   *
+   *
+   *  json标准写法
+   *   1、只能用双引号
+   *   2、所有名字都必须用引号包起来
    */
   let json = {a: 12, b: 5};
+  let str = 'http://www.baidu.com/path/user?data=' + json;
+  console.log(str);
+  let str1 = 'http://www.baidu.com/path/user?data=' + JSON.stringify(json);
+  console.log(str1);
+  let str2 = 'http://www.baidu.com/path/user?data=' + encodeURIComponent(JSON.stringify(json));
+  console.log(str2);
+
+  // let s = '{a:11,b:22,c:"abc"}';  //Uncaught SyntaxError: Unexpected token a in JSON at position 1 at JSON.parse
+  let s = '{"a":11,"b":22,"c":"abc"}';
+  console.log(JSON.parse(s));
 
 </script>
 </html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>generator_yield</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * yield 暂停  既可以传参，又可以返回
+   */
+  function* show(num1, num2) {
+    alert(`${num1},${num2}`);
+    alert("a");
+    let a = yield;
+    alert("b");
+    alert(a);
+  }
+
+  let gen = show(99, 88);
+  gen.next(12);  // 第一个next没法给yield传参
+  gen.next(45);
+</script>
+</html>
