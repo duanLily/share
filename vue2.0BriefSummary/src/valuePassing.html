@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>valuePassing</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <h4>来自子组件的信息：{{childMes}}</h4>
+  <son :toson="msg" @send="getMess"></son>
+</div>
+<template id="son">
+  <div>
+    <h3>子组件:{{toson}}</h3>
+    <button @click="sendMes">点击发信息给父组件</button>
+  </div>
+</template>
+</body>
+<script>
+  /**
+   * 子父通信
+   * 子传父： 1、关键$emit()
+   * 父传子： 1、子组件标签中绑定要传递的值；2、在子组件的props里面接住这个值；
+   */
+  const son={
+    template:'#son',
+    props:['toson'],
+    data(){
+      return{
+        msg:'我是子组件'
+      }
+    },
+    methods: {
+      sendMes(){
+        this.$emit("send",this.msg)
+      }
+    }
+  };
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:'父组件的话',
+      childMes:''
+    },
+    methods:{
+      getMess(val){
+        this.childMes =val;
+      }
+    },
+    components:{
+      son:son
+    }
+  })
+</script>
+</html>

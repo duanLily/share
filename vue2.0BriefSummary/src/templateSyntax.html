@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>templateSyntax</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <a :href="url">百度</a>
+  <input type="text" v-model="uName">
+</div>
+</body>
+<script>
+  /**
+   * v-bind：属性绑定    :      一般用于非表单标签
+   * v-on：方法绑定      @
+   * v-model：双向绑定          一般用于表单元素双向绑定
+   * v-if：条件渲染
+   * v-for：列表渲染
+   */
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:'',
+      url:'http://www.baidu.com',
+      uName:'xiaoming'
+    },
+    methods:{}
+  })
+</script>
+</html>

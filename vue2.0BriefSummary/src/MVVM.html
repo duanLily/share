@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MVVM</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+  数据显示：<input type="text" v-model="msg">
+  <h3>{{msg}}</h3>
+</div>
+</body>
+<script>
+  /**
+   * MVVM：实现数据、视图双向绑定
+   * Model（数据模型）：操作数据
+   * View（视图）：显示数据
+   * VM：模型与视图间的双向操作
+   */
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      msg:''
+    },
+    methods:{}
+  })
+</script>
+</html>

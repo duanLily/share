@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>component</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <!-- 2、引用全局组件 -->
+  <comp1></comp1>
+  <br>
+  <!-- 44、引用局部组件 -->
+  <son></son>
+</div>
+<!--22、局部组件模板-->
+<template id="son">
+  <button @click="count++">打儿子{{count}}次</button>
+</template>
+</body>
+<script>
+  /**
+   *  全局组件： Vue.component('组件名',{组件参数})
+   *  局部组件： 只属于某一个Vue实例，通过components添加（挂载）。单页面应用（SinglePageApplication）中使用较多
+   */
+  // 1、定义全局组件
+  Vue.component('comp1', {
+    template: '',
+    data() {
+      return {
+        count: 0
+      }
+    }
+  });
+  // 11、定义局部组件 组件名：组件对象
+  const son = {
+    template: '<button @click="count++">点击{{count}}次</button>',
+    data() {
+      return {
+        count: 0
+      }
+    }
+  };
+  const vm = new Vue({
+    el: "#app",
+    data: {},
+    methods: {},
+    // 33、挂载局部组件
+    components: {
+      son:son
+    }
+  });
+
+</script>
+</html>

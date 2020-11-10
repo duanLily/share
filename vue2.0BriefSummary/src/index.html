@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>index</title>
+  <!-- 1、引入vue.js -->
+  <script src="../vue.js"></script>
+</head>
+<body>
+<!-- 2、编写页面元素 -->
+<div id="app">
+  {{msg}}
+  <br>
+  <input type="text" v-model="first">+<input type="text" v-model="second">
+  <button v-on:click="add">=</button><input type="text" v-model="result">
+</div>
+</body>
+<!-- 3、编写vue实例 -->
+<script>
+  const vm = new Vue({
+    el: "#app",  // 操作的页面元素，必填参数
+    data: {      // 数据，可以理解为面向对象中类的属性      保存数据
+      msg: 'Hello world',
+      first:null,
+      second:null,
+      result:null
+    },
+    methods: {   // 方法，可以理解为面向对象中类的方法      修改数据
+      add(){
+        this.result=parseInt(this.first)+parseInt(this.second);
+      }
+    }
+  })
+</script>
+</html>
