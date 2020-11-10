@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>variable</title>
+</head>
+<body>
+变量
+<!--<div style="height: 20%">
+  <button onclick="varF()">var</button>
+</div>
+<div style="height: 80%" id="content"></div>-->
+
+</body>
+<script>
+  // var 例子
+  // varF();
+  // let   const 例子
+  letConstF();
+  /**
+   * var
+   * 1、可以重复声明
+   * 2、无法限制修改   eg:PI
+   * 3、没有块级作用域   {}
+   */
+  function varF() {
+    var a = 1;
+    var a = 2;
+    console.log(a); // 2
+
+    if (true) {
+      var b = 3;
+    }
+    console.log(b); // 3
+    // document.getElementById("content").innerHTML = "var：1、可以重复声明；2、无法限制修改 eg:PI； 3、没有块级作用域   {};";
+  }
+
+  /**
+   * let   const
+   * Common：
+   *  1、不能重复声明
+   *  2、块级作用域
+   *
+   * Difference：
+   *  let：
+   *    1、可以修改 --变量
+   *  const：
+   *    1、不可以修改 --常量
+   *
+   */
+  function letConstF(){
+    let x = 1;
+    // let x = 2;
+    console.log(x); // Uncaught SyntaxError: Identifier 'x' has already been declared
+    let y = 3;
+    // let y = 4;
+    console.log(y); // Uncaught SyntaxError: Identifier 'x' has already been declared
+
+    let z = 5;  // 55
+    // const z = 6;  //Uncaught TypeError: Assignment to constant variable.
+    z = 55;
+    console.log(z); // Uncaught SyntaxError: Identifier 'x' has already been declared
+
+    if(true){
+      // let a = 11; // Uncaught ReferenceError: a is not defined
+      const a = 11; // Uncaught ReferenceError: a is not defined
+    }
+    console.log(a);
+  }
+
+
+
+</script>
+</html>

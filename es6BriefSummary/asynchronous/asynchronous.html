@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>asynchronous</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * asynchronous 异步
+   * |-异步操作
+   *  |-a.回调
+   *  |-b.Promise
+   *  |-c.generator
+   *  |-d.
+   */
+
+  //  回调
+  $.ajax({
+    url: 'getUserData', dataType: 'json', success(userData) {
+      if (userData.type == "Vip") {
+        $.ajax({
+          url: 'getVipItems', dataType: 'json', success(userData) {
+            // 生成列表、显示
+          },
+          error(err) {
+            alert("失败了");
+          }
+        });
+      } else {
+        $.ajax({
+          url: 'getItems', dataType: 'json', success(items) {
+            // 生成列表、显示
+          },
+          error(err) {
+            alert("失败了");
+          }
+        });
+      }
+    }, error(err) {
+      alert("失败了");
+    }
+  });
+
+  //  带逻辑的Promise  麻烦
+  Promise.all([
+    $.ajax({url: 'getUserData', dataType: 'json'})
+  ]).then(results => {
+    let userData = results[0];
+    if (userData.type == "Vip") {
+      Promise.all([
+        $.ajax({url: 'getVipItems', dataType: 'json'})
+      ]).then(results => {
+        let VipItems = results[0];
+        // 生成列表、显示
+      }, err => {
+        alert("失败了");
+      });
+    }else{
+      Promise.all([
+        $.ajax({url: 'getItems', dataType: 'json'})
+      ]).then(results => {
+        let items = results[0];
+        // 生成列表、显示
+      }, err => {
+        alert("失败了");
+      });
+    }
+  }, err => {
+    alert("失败了");
+  });
+
+  // 带逻辑的generator  实则是对promise的封装
+  runner(function *() {
+    let userData=yield $.ajax({url: 'getUserData', dataType: 'json'});
+    if (userData.type == "Vip") {
+      let vipItems=yield $.ajax({url: 'getVipItems', dataType: 'json'});
+    }else {
+      let items=yield $.ajax({url: 'items', dataType: 'json'});
+    }
+    // 生成列表、显示
+  })
+
+</script>
+</html>

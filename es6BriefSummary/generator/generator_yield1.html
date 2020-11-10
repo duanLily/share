@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>generator_yield1</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * yield 暂停  既可以传参，又可以返回
+   */
+  function* show() {
+    alert("a");
+    yield 22;
+    alert("b");
+    return 99;
+  }
+
+  let gen = show();
+  let res1 = gen.next();
+  console.log(res1);  //{value: 22, done: false}
+  let res2 = gen.next();
+  console.log(res2);  //{value: undefined, done: true}
+</script>
+</html>

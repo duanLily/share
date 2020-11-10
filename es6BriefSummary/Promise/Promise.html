@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise</title>
+  <script charset="UTF-8" src="../jquery.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   *  1、同步：操作之间没有联系，同时进行多个操作  代码更复杂
+   *  2、异步：同时只能做一件事  代码简单
+   *
+   *  Promise--消除异步操作
+   */
+  let p = new Promise(function (resolve, reject) {
+    //异步代码
+    $.ajax({
+      url: 'arr.txt',
+      dataType: 'json',
+      success(arr) {
+        //resolve---成功了
+        resolve(arr);
+      },
+      error(err) {
+        //reject---失败了
+        reject(err);
+      }
+    });
+  });
+
+  p.then(function (arr) {
+    console.log("成功了" + arr);
+  }, function (err) {
+    console.log("失败了" + err);
+  })
+</script>
+</html>

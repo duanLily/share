@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>reactBasic_render</title>
+  <script charset="UTF-8" src="react.js"></script>
+  <script charset="UTF-8" src="react-dom.js"></script>
+  <script charset="UTF-8" src="browser.min.js"></script>
+</head>
+<body>
+<div id="div1">
+
+</div>
+</body>
+<script type="text/babel">
+  /**
+   * 面向对象的应用  --React  强依赖于es6面向对象
+   *  React：
+   *    1、模块化、组件化   ----每个组件相当于一个class
+   *    2、强依赖于JSX     ----JSX==babel==browser.js
+   *
+   *
+   *    JSX  是js扩展版
+   */
+  window.onload = function () {
+    let oDiv = document.getElementById("div1");
+    // 渲染
+    ReactDOM.render(
+        <span>123</span>,
+        oDiv
+    );
+  }
+</script>
+</html>

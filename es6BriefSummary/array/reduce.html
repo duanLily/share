@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>reduce</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * reduce
+   *  参数1：上一次计算结果，第一次默认a[0]
+   *  参数2：数组的每一项
+   *  参数3：当前项索引
+   */
+  let arr = [11,22,33,44];
+  let result = arr.reduce((temp,item,index)=>{
+    if(index!==arr.length-1){
+      return temp+item;
+    }else {
+      return (temp+item)/arr.length;
+    }
+  });
+  console.log(result);  // 平均数
+</script>
+</html>

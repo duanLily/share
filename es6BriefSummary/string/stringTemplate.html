@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>stringTemplate</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * ``   字符串模板
+   *  1、连接字符串、
+   *     1）、直接把东西塞到字符串里面  ${东西}
+   *     2）、可以换行书写
+   */
+  let title = "标题";
+  let content = "内容";
+
+  let str = '<div><h1>'
+      + title +
+      '</h1><p>'
+      + content +
+      '</p></div>';
+  let str1 = `<div>
+<h1>${title}</h1>
+<p>${content}</p>
+</div>`;
+  console.log(str);
+  console.log(str1);
+</script>
+</html>

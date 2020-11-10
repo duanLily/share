@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jsonAbbreviation</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * json 简写
+   *  1、名字跟值(key和value)一样的   留一个就行
+   *  2、方法  ：function一块删
+   *     show：function（）{...}  =>  show(){...}
+   */
+  let a = 11, b = 22, json = {a, b, c: 33};
+  console.log(json)
+
+  let jso={
+    x:44,
+    show:function () {
+      console.log(this.x);
+    }
+  };
+  jso.show();
+</script>
+</html>
