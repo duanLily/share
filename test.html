@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  function isValid(s) {
+    let result = [];
+    let items=[];
+    for(let i in s){
+      let len = s[i].length;
+      if (len % 2 !== 0) {
+        result.push(false);
+      }
+      for(let j=0;j<len;j++){
+        let letter = items[items.length-1];
+        switch (s[i][j]) {
+          case '(':
+            items.push('(');
+            break;
+          case '[':
+            items.push('[');
+            break;
+           case '{':
+            items.push('{');
+            break;
+            case ')':
+            if(letter==='('){
+              items.pop()
+            }
+            break;
+          case ']':
+            if(letter==='['){
+              items.pop()
+            }
+            break;
+           case '}':
+             if(letter==='{'){
+               items.pop()
+             }
+            break;
+        }
+      }
+      result.push(items.length===0);
+    }
+    return result;
+  }
+
+  let ar = ['()', '()[]{}', '(]', '([)]', '{[]}']; //t t f f t
+  console.log(isValid(ar));
+</script>
+</html>

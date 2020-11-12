@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>conditionalRendering</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <button @click="flag=!flag">切换</button>
+  <div v-if="flag">v-if</div>
+  <div v-show="flag">v-show</div>
+</div>
+</body>
+<script>
+  /**
+   * 条件渲染：满足条件时，渲染到页面
+   *             true       false
+   * v-if：    渲染元素   整个元素消失
+   * v-show：  渲染元素   display：none隐藏元素
+   *
+   * v-if和v-show除了可以使用变量还可以使用表达式
+   */
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      flag:true
+    },
+    methods:{}
+  })
+</script>
+</html>

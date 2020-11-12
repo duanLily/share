@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>listRendering</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="(li,index) in dataList">{{index}}---->{{li}}</li>
+  </ul>
+</div>
+</body>
+<script>
+  /**
+   * 列表渲染（循环渲染）
+   * v-for：遍历数组或对象
+   */
+  const vm = new Vue({
+    el:"#app",
+    data:{
+      dataList:['test1','test2','test3']
+    },
+    methods:{}
+  })
+</script>
+</html>
