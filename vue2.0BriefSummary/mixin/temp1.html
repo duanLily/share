@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <child></child>
+    <kid></kid>
+  </div>
+</body>
+<script>
+  const myMixin = {
+    mounted() {
+      console.log("mixin say hi")
+    },
+    data() {
+      return {
+        msg: "message from mixin",
+      }
+    },
+    methods: {
+      hello() {
+        console.log("hello from mixin------" + this.msg);
+      }
+    },
+  }
+
+  Vue.component('child',{
+    template: `<h1 @click='foo'>Child Component</h1>`,
+    mixins: [myMixin],
+    methods: {
+      foo() {
+        console.log("Child foo----" + this.msg);
+      }
+    },
+  });
+  Vue.component('kid', {
+    template: `<div><h2 @click='foo'>kid Component</h2>
+    <h3 @click='hello'>mix hello</h3></div>`,
+    mixins: [myMixin],
+    methods: {
+      foo() {
+        console.log("kid foo----" + this.msg);
+      }
+    },
+  });
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      msg: "message from vm"
+    },
+    mounted() {
+      console.log("app say hi");
+      this.foo();
+    },
+    methods: {
+      foo() {
+        console.log("hi from vm------" + this.msg);
+      }
+    }
+  });
+</script>
+
+</html>
