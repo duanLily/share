@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="startTime()">
+    <!-- 时间 -->
+    <!-- <script>
+        var date = new Date()
+        // 获取当前时间
+        document.write(date+"<br>")
+        // 获取当前年份
+        document.write(date.getFullYear()+"<br>")
+        // 获取时间戳 即毫秒数
+        document.write(date.getTime()+"<br>")
+        // 自定义时间
+        date.setFullYear(2010,1,1)
+        document.write(date+"<br>")
+    </script> -->
+
+    <!-- 时钟 -->
+    <script>
+        function startTime(){
+            var today=new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds(); 
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById("timetxt").innerHTML=h+":"+m+":"+s;
+            setTimeout(() => {
+                startTime();
+            }, 500);
+        }
+        function checkTime(i){
+            if(i<10){
+                i="0"+i;
+            }
+            return i;
+        }
+    </script>
+    <div id="timetxt"></div>
+</body>
+</html>

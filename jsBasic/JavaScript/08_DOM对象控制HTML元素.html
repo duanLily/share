@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p name="pn">Hello</p>
+    <p name="pn">Hello</p>
+    <p name="pn">Hello</p>
+    <p name="pn">Hello</p>
+    <a id="aid" title="得到了a标签的属性">Hello</a>
+    <a id="aid2">HelloHi</a>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <div id="div">
+        <p id="pid">div的p元素</p>
+    </div>
+    <script>
+        // 获取元素
+        function getName() {
+            // 通过name来获取元素
+            /*  var count = document.getElementsByName("pn"); */
+
+            // 获取具体的元素
+            var count = document.getElementsByTagName("p");
+            var p = count[2];
+            p.innerHTML = "World";
+        }
+        getName()
+
+        // 获取属性
+        function getAttr() {
+            var anode = document.getElementById("aid")
+            var attr = anode.getAttribute("title")
+            console.log(attr)
+        }
+        getAttr()
+
+        // 设置属性
+        function setAttr() {
+            var anode = document.getElementById("aid2")
+            anode.setAttribute("title", "动态设置a的title属性")
+            var attribute = anode.getAttribute('title')
+            console.log(attribute)
+        }
+        setAttr()
+
+        // 获取子节点
+        function getChildNode(){
+            var childnode = document.getElementsByTagName("ul")[0].childNodes;
+            console.log(childnode.length)
+            console.log(childnode[0].nodeType)
+        }
+        getChildNode()
+
+        // 获取父节点
+        function getParentNode(){
+            var div = document.getElementById("pid")
+            console.log(div.parentNode.nodeName)
+        }
+        getParentNode();
+
+        // 创建添加一个节点
+        function createNode(){
+            var body = document.body
+            var input = document.createElement("input")
+            input.type="button"
+            input.value="按钮"
+            // 在末尾插入节点
+            body.appendChild(input)
+        }
+        createNode()
+
+        // 插入节点
+        function addNode(){
+            var div = document.getElementById("div")
+            var node = document.getElementById("pid")
+            var newNode =document.createElement("p")
+            newNode.innerHTML='动态插入一个p元素'
+            div.insertBefore(newNode,node)
+        }
+        addNode()
+    </script>
+</body>
+
+</html>

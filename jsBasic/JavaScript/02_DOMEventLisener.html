@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作css
+    </title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+    <script>
+        var x = document.getElementById("btn")
+        x.addEventListener("click", hello) // 句柄
+        x.addEventListener("click", world)
+        // 移除句柄
+        x.removeEventListener("click",hello)
+        // x.removeEventListener("click",world)
+
+        function hello() {
+            alert("hello")
+        }
+
+        function world() {
+            alert("world")
+        }
+    </script>
+</body>
+
+</html>

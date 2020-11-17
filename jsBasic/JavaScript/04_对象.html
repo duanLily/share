@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 创建对象 -->
+    <script>
+        // 方法1
+        /*  people = new Object();
+         people.name="邓伦"
+         people.age=20
+         document.write("name:"+people.name+"age:"+people.age) */
+
+        //    方法2
+        /* people={name:"邓伦",age:18}
+        document.write("name:"+people.name+"age:"+people.age) */
+
+        // 方法3
+        /*  function people(name, age) {
+             this.name = name;
+             this.age = age;
+         }
+         son = new people("肖战", 20)
+         document.write("name:" + son.name + "age:" + son.age) */
+
+        // 字符串对象
+        var str = "Hello World";
+        var str1 = "Hello nice to meet you";
+        // document.write("字符串长度为："+str.length)
+        // document.write("World开始的索引："+str.indexOf("World"))
+        // document.write("World字符串是否匹配："+str.match("World1")) //匹配返回字符串，不匹配返回空
+        // document.write(str.replace("World","Happy Everyday"))
+        // document.write(str.toUpperCase())  //转换大写
+        // document.write(str.toLowerCase())  //转换小写
+        // 字符串转为数组
+         var s = str1.split(" ");
+         for(var i=0;i<s.length;i++){
+            document.write(s[i]+"<br>")
+         }
+    </script>
+
+</html>

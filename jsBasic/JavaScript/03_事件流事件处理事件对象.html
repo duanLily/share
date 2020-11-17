@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div">
+        <button id="btn1" onclick="demo()">按钮</button>
+        <a href="http://www.baidu.com" id="aid">百度一下</a>
+    </div>
+    <!-- Html事件处理 -->
+    <!-- <script>
+        function demo(){
+            alert("Hello html事件处理")
+        }
+    </script> -->
+    <!-- DOM0 -->
+    <!-- <script>
+        var btn1 = document.getElementById("btn1");
+        // 前面的会被覆盖
+        btn1.onclick = function(){
+            alert("DOM0事件处理1")
+        }
+        btn1.onclick = function(){
+            alert("DOM0事件处理2")
+        }
+        // 清除
+        btn1.onclick=null;
+    </script> -->
+    <!-- DOM2 -->
+    <!-- <script>
+        var btn1=document.getElementById("btn1")
+        // 不会覆盖，依次处理
+        btn1.addEventListener("click",demo1);
+        btn1.addEventListener("click",demo2);
+        btn1.addEventListener("click",demo3);
+        function demo1(){
+            alert("DOM2事件处理1")
+        }
+        function demo2(){
+            alert("DOM2事件处理2")
+        }
+        function demo3(){
+            alert("DOM2事件处理3")
+        }
+        // 移除处理事件
+        btn1.removeEventListener("click",demo2)
+    </script> -->
+    <script>
+        document.getElementById("btn1").addEventListener("click",showType)
+        function showType(){
+            alert(event.type)
+        }
+        document.getElementById("btn1").addEventListener("click",showTarget)
+        function showTarget(){
+            alert(event.target)
+            // 阻止事件冒泡
+            event.stopPropagation();
+        }
+        document.getElementById("div").addEventListener("click",showDiv)
+        function showDiv(){
+            alert("showDiv")
+        }
+        document.getElementById("aid").addEventListener("click",showA)
+        function showA(event){
+            // 阻止事件冒泡
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    </script>
+</body>
+</html>
