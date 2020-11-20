@@ -32,10 +32,12 @@
     return takeLongTime(k + m + n);
   };
 
-  // 用promise
-  // doIt();
+  /**
+  * 用promise
+  */
+  // doIt1();
 
-  function doIt() {
+  function doIt1() {
     console.time("doIt");
     const time1 = 300;
     step1(time1)
@@ -57,9 +59,9 @@
   * 用async、await
   * 优势：处理then链
   */
-  doIt1();
+  doIt2();
 
-  async function doIt1() {
+  async function doIt2() {
     console.time("doIt1");
     const time1 = 300;
     const time2 = await step1(time1);

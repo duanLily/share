@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module</title>
+</head>
+<body>
+  <h1 onclick="open()"></h1>
+</body>
+<script type="module">
+  /*  
+    //CommonJS模块
+    let {stat,exists,readfile} =require('fs');
+    //等同于
+    let _fs = require('fs');
+    let stat =_fs.stat;
+    let exists =_fs.exists;
+    let readfile =_fs.readfile;
+    //ES6模块：通过export命令显式指定输出的代码，再通过import命令输入。
+    import { stat, exists, readfile } from 'fs';
+   */
+  /**
+   * 模块功能两个命令：export、import
+   *  export命令用于规定模块的对外接口
+   *  import命令用于输入其他模块提供的功能
+   */
+// import {person} from './moduleTest.js';
+// person.moduleTest();
+</script>
+</html>
