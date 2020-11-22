@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>闭包封装</title>
+</head>
+<body>
+闭包封装
+</body>
+<script type="text/javascript">
+  (function () {
+    var _userId = 2387,
+        _typeId = 'item',
+        ex = {};
+
+    function converter(userId) {
+      return userId;
+    };
+    ex.getUserId = () => {
+      return converter(_userId);
+    };
+    ex.getTyprId = () => {
+      return _typeId;
+    };
+    window.ex = ex;
+  }());
+  console.log(ex.getUserId());
+  console.log(ex.getTyprId());
+  console.log(ex._userId);
+  console.log(ex._typeId);
+  console.log(ex.converter);
+</script>
+</html>

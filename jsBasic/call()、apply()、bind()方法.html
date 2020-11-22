@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>call()、apply()、bind()方法</title>
+</head>
+<body>
+call()、apply()、bind()方法
+<script type="text/javascript">
+  var person = {
+    name : "王先生",
+    gender : "男",
+    age : 20,
+    info : function() {
+      console.log(this.name + " , " + this.gender + " ,今年" + this.age);
+    },
+    detail : function(school,grade) {
+      console.log(this.name + " , " + this.gender + " ,今年" + this.age + " ,在" + school + "上" + grade);
+    }
+  };
+  var msLi = {
+    name : "李女士",
+    gender : "女",
+    age : 18
+  };
+  /*不加参数的调用*/
+  person.info();
+  person.info.call(msLi);
+  console.log("apply():")
+  person.info.apply(msLi);
+  // bind 返回的是一个新的函数，你必须调用它才会被执行。
+  person.info.bind(msLi)();
+
+  /*加参数的调用*/
+  person.detail();
+  person.detail.call(msLi,"xx一中","高一年级");
+  person.detail.apply(msLi,["xx一中","高二年级"]);
+  // bind 返回的是一个新的函数，你必须调用它才会被执行。
+  // bind 的传参方式和call一样就行，如果是数组就要是两个数组。
+  // 传参后调用
+  person.detail.bind(msLi,"xx一中","一年级")();
+  person.detail.bind(msLi,["xx一中"],["二年级"])();
+  // 调用时传参
+  person.detail.bind(msLi)("xx一中","三年级");
+  person.detail.bind(msLi)(["xx一中"],["四年级"]);
+</script>
+</body>
+</html>

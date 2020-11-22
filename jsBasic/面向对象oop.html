@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>面向对象oop</title>
+</head>
+<body>
+面向对象oop
+</body>
+<script type="text/javascript">
+  /**
+   * call() 方法是预定义的 JavaScript 方法。
+   * 它可以用来调用所有者对象作为参数的方法。
+   * @param name
+   * @param age
+   */
+  function person(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  person.prototype.hi = function () {
+    console.log('Hi , my name is ' + this.name + ', I\'m' +
+        this.age + 'years old now.');
+  };
+  person.prototype.legsNum = 2;
+  person.prototype.armsNum = 2;
+  person.prototype.walk = function () {
+    console.log(this.name + ' is walking...');
+  };
+
+  function student(name, age, className) {
+    person.call(this, name, age);
+    this.className = className;
+  }
+  student.prototype = Object.create(person.prototype);
+  student.prototype.constructor = student;
+
+  student.prototype.hi = function () {
+    console.log('Hi,my name is ' + this.name + ',I\'m ' +
+        this.age + ' years old now,and from ' + this.className + ' .');
+  };
+  student.prototype.learn = function (subject) {
+    console.log(this.name + ' is learning ' + subject + ' at ' + this.className + '.');
+  }
+
+  //  test
+  var tony = new student('Tony', 27, 'Class 3,Grade 2');
+  tony.hi();
+  console.log("legs：" + tony.legsNum);
+  tony.walk();
+  tony.learn("math");
+</script>
+</html>

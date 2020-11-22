@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>模拟重载</title>
+</head>
+<body>
+模拟重载
+<script type="text/javascript">
+  function person() {
+    var args = arguments;
+    if(typeof args[0]==='object'&& args[0]){
+      if(args[0].name){
+        this.name = args[0].name;
+      }
+      if(args[0].age){
+        this.age = args[0].age;
+      }
+    }else {
+      if (args[0]){
+        this.name = args[0];
+      }
+      if (args[1]){
+        this.age = args[1];
+      }
+    }
+  }
+  person.prototype.toString=function () {
+    return 'name = '+this.name+',age = '+this.age;
+  };
+
+  var tony = new person('tony',33);
+  console.log(tony.toString());
+
+  var ben = new person({name:'ben',age:44});
+  console.log(ben.toString());
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array_filter()方法</title>
+</head>
+<body>
+Array_filter()方法
+<script type="text/javascript">
+  var arr = [1, 2, 3, 4, 5, 6];
+  var filterArray = arr.filter((x, index) => {
+    return index % 3 === 0 || x >= 8;
+  });
+  console.log(filterArray);
+  console.log(arr);
+</script>
+</body>
+</html>

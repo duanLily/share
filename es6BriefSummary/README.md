@@ -1,4 +1,4 @@
-# es6BriefSummary  es6简单总结
+# es6BriefSummary  ES6简单总结
  ## List
   |-1、变量
     |-var    重复声明、函数级
@@ -15,7 +15,7 @@
     |-reduce   汇总  一堆-->一个
     |-filter   过滤  一堆-->符合条件的
     |-forEach  循环（迭代）
-  |-4、字符串 
+  |-4、字符串
     |-startsWith、endsWith
     |-字符串模板``  可以直接把变量往里面塞
   |-5、面向对象
@@ -38,14 +38,15 @@
     |-封装异步操作   Promise.all([$.ajax({url:"xxx",dataType:"json"})])
   |-7、generator
     |-function *show(){
-        yield 
+        yield
       }
-  |-8、JSON
+  |-8、async、await
+  |-9、JSON
     |-JSON.stringify({a:12,b:3})  -->{"a":12,"b":3}
     |-JSON.parse({"a":12,"b":3})  -->{a:12,b:3}
-  |-9、解构赋值
+  |-10、解构赋值
     |-左右结构一致，右边合法，声明、赋值一次完成  
-  |-10、模块化     
+  |-11、模块化
  ## Lists dretails
     |-compatibility  兼容性
       |-编译、转换
@@ -63,9 +64,4 @@
       |-forEach 循环（迭代）
     |-string   字符串
     |-oop      面向对象
-    |-json     
-     
-
- 
- 
- 
+    |-json

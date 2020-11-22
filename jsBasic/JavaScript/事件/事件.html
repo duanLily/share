@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+    <link rel="stylesheet" type="text/css" href="../css/事件css.css">
+</head>
+
+<body onload="msg()">
+    <div class="div" onmouseout="onOut(this)" onmouseover="onOver(this)"></div>
+    <script>
+        // 鼠标移出事件
+        function onOver(ooj) {
+            ooj.innerHTML = "Hello"
+        }
+        // 鼠标经过事件
+        function onOut(ooj) {
+            ooj.innerHTML = "World"
+        }
+    </script>
+    <form action="">
+        <input type="text" onchange="alert('Hello,内容改变了')">
+        <input type="text" onselect="changeDemo(this)" onfocus="changeFocus(this)" onblur="changeBlur(this)">
+    </form>
+    <script>
+        function changeDemo(bg){
+            bg.style.background = "pink";
+        }
+        function changeFocus(bg){
+            bg.style.background = "blue";
+        }
+        function changeBlur(bg){
+            bg.style.background = "green";
+        }
+        function msg(){
+            alert("网页加载完毕")
+        }
+    </script>
+</body>
+
+</html>

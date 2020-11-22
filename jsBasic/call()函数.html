@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>call()</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+  /**
+   * call() 方法是预定义的 JavaScript 方法。
+   * 它可以用来调用所有者对象作为参数的方法。
+   * @param name
+   * @param age
+   */
+  const person = {
+    hi: function () {
+      console.log('Hi , my name is ' + this.name + ', I\'m ' + this.age + ' years old now.');
+    },
+    walk : function () {
+      console.log(this.name + ' is walking...');
+    },
+    learn : function (subject) {
+      console.log(this.name + ' is learning ' + subject + ' at ' + this.className + '.');
+    }
+  };
+  const tony = {
+    name: "Tony",
+    age: 18,
+  };
+  const pete = {
+    name: "pete",
+    age: 19,
+    subject:"math",
+    className:"Grade 2 , Class 7"
+  };
+  person.hi.call(tony);
+  person.hi.call(pete);
+  person.walk.call(pete);
+  /**
+   * 带参数的 call() 方法
+   * call() 方法可接受参数
+   */
+  person.learn.call(pete,"math");
+</script>
+</html>

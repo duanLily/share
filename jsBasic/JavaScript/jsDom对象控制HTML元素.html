@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p name="pn">Hello</p>
+    <p name="pn">Hello</p>
+    <p name="pn">Hello</p>
+    <p name="pn">Hello</p>
+    
+    <script>
+        function getName(){
+            var count = document.getElementsByName("pn")
+            var p = count[3]
+            p.innerHTML = "World"
+        }
+        getName()
+    </script>
+</body>
+</html>

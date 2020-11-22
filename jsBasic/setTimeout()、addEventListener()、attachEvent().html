@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setTimeout()</title>
+</head>
+<body>
+
+</body>
+<script>
+  function onLoad(f) {
+    if (onLoad.loaded) window.setTimeout(f, 0);
+    else if (window.addEventListener("load", f, false)) ;
+    else if (window.attachEvent("oload", f)) ;
+  }
+  onLoad.loaded = false;
+  onLoad(function () {
+    onLoad.loaded = true;
+  })
+</script>
+</html>

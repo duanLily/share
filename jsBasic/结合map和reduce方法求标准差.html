@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>结合map和reduce方法求标准差</title>
+</head>
+<body>
+结合map和reduce方法求标准差
+</body>
+<script type="text/javascript">
+  var arr = [1, 1,3,3,5,5];
+  var sum = (x, y) => {
+    return x + y;
+  };
+  var square = (x) => {
+    return x * x;
+  };
+
+  var average = arr.reduce(sum) / arr.length;
+  console.log("平均值：" + average);
+  var dev = arr.map((x) => {
+    return x - average;
+  });
+  console.log("差值：" + dev);
+  var stdev = Math.sqrt(dev.map(square).reduce(sum) / arr.length);
+  console.log("标准差值：" + stdev);
+
+</script>
+</html>

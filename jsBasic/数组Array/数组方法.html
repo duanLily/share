@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array</title>
+</head>
+<body>
+Array
+</body>
+<script type="text/javascript">
+  /*
+   * join()方法
+   * 将数组中所有元素转化为字符串并连接在一起，返回最后生成的字符串。
+   */
+  const a = [1, 2, 3];
+  // 可指定分隔符,不指定时默认逗号分隔
+  console.log(a.join());    //不指定
+  console.log(a.join(" ")); // 空格分隔
+  console.log(a.join(""));  // 无分隔符
+  const aa = new Array(5);
+  console.log(aa.join("-"));
+
+  /*
+   *reverse()方法
+   * 将数组中的元素颠倒顺序，返回逆序的数组。
+   */
+  // 在原先数组中重新排列数组中的元素
+  console.log(a.reverse().join());
+
+  /*
+   * sort()方法
+   * 将数组中的元素排序，返回排序后的数组。
+   */
+  // 不带参数调用时，以字母表顺序排序（有必要时将临时转化为字符串进行比较）
+  const b = [1, 55, 77542, 12, 32, 23, undefined]; // 数组中存在undefined元素，会默认排到数组的尾部
+  console.log(b.sort());   // 按字母顺序表排序
+  b.sort((a, b) => {
+    return a - b;
+  });                       // 升序
+  console.log(b);
+  b.sort((a, b) => {
+    return b - a;
+  });                      // 降序
+  console.log(b);
+  // 是否区分大小写排序
+  const bb = ['ant', 'Dog', 'cat', 'Bug'];
+  console.log(bb.sort());      // 区分大小写的排序
+  bb.sort((s, t) => {          // 不区分大小写的排序
+    const a = s.toLowerCase();
+    const b = t.toLowerCase();
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+  });
+  console.log(bb);
+
+  /*
+   * concat()方法
+   * 创建并返回一个新数组。
+   */
+  // concat 不会修改调用的数组
+  const c = [1, 2, 3];
+  console.log(c.concat(4, 5));// 直接在数组末尾拼接参数
+  console.log("concat 会不会扁平化数组：");
+  console.log(c.concat([4, 5]));// 扁平化数组，在数组末尾拼接
+  console.log(c.concat([4, 5], [6, 7]));// concat 会扁平化数组，在数组末尾拼接
+  console.log(c.concat(4, [5, [6, 7]]));// concat 不会扁平化数组的数组，在数组末尾拼接
+
+  /*
+   * slice()方法
+   * 返回指定数组的。一个片段或子数组。
+   * 参数1，参数2指定了片段的开始和结束的位置。（左闭右开）
+   */
+  // slice不会修改调用的数组
+  const d = [1, 2, 3, 4, 5];
+  console.log(d.slice(0, 3));// 截取索引0-3（不包括3）的元素
+  console.log(d.slice(3)); // 截取索引3以后的元素
+  console.log(d.slice(1, -1)); // 截取索引1至-1（不包括-1）的元素，-1指从右往左的第一个，即d中的5这个元素
+  console.log(d.slice(-3, -2)); // 截取索引-3至-2（不包括-2）的元素
+
+  /*
+   * splice()方法
+   * 在数组中插入或删除元素，返回一个由删除元素组成的数组，没有删除元素时，返回一个空数组。
+   * 参数1，指定了插入或删除的起始位置。
+   * 参数2，指定了应该从数组中删除的元素个数。
+   * 之后的参数（任意个数，依次插入就好），指定了应该从参数1位置开始插入的数组元素。
+   */
+  // splice 会修改调用的数组
+  const e = [1, 2, 3, 4, 5, 6, 7, 8];
+  console.log(e.splice(4)); // 参数2省略，将删除起始位置至数组结尾的所有元素  e=[1,2,3,4]
+  console.log(e.splice(1, 2)); // 索引1开始，删除2个元素  e=[1,4]
+  console.log(e.splice(1, 1)); // 索引1开始，删除1个元素  e=[1]
+  // splice 不会扁平化数组，也不会扁平化数组的数组
+  console.log(e.splice(0, 1, 1, 2, [1, [2, [7, 9], 3]], 'a', 'b', 'c')); // 索引1开始，删除1个元素  e=[1,2,1,2,3,'a','b','c']
+  console.log("splice 会不会扁平化数组：");
+  console.log(e);
+
+  /*
+   * push()方法
+   * 在数组末尾添加一个或多个元素，并返回数组新的长度。
+   *
+   * pop()方法
+   * 删除数组的最后一个元素，减小数组长度并返回它删除的值。
+   */
+  // push、pop 修改并替换原始数组   允许将数组当做栈来处理，组合使用可以用JavaScript数组实现先进后出的栈
+  const f = [];               // f=[]
+  console.log(f.push(1, 2));   // f=[1,2],返回：2
+  console.log(f.pop());       // f=[1],返回：2
+  console.log(f.push(3));     // f=[1,3],返回：2
+  console.log(f.pop());       // f=[1],返回：3
+  console.log(f.push([4, 5], [1, [2, 9, 8]], [99, 88]));  // f=[1,[4,5],[1,[2,9,8]],[99,88]],返回：4
+  console.log(f.pop());       // f=[1,[4,5],[1,[2,9,8]]],返回：[99,88]
+
+  /*
+   * unshift()
+   *  在数组头部添加一个或多个元素，并将已存在的元素移动到更高索引的位置来获得足够的空间，最后返回数组新的长度。
+   *
+   * shift()方法
+   * 删除数组的第一个元素并返回它删除的值，然后把所有随后的元素下移一个位置来填补数组头部的空缺。
+   */
+  const g = [];                    // a=[0]
+  console.log(g.unshift(1));        // a=[1],返回：1
+  console.log(g.unshift(22));       // a=[22,1],返回：2
+  console.log(g.shift());           // a=[1],返回：22
+  // 使用多个参数调用 unshift 时，参数是一次性全部插入的。
+  console.log(g.unshift(3, [4, 5]));  // a=[3,[4,5],1],返回：3
+  console.log(g.shift());           // a=[[4,5],1],返回：3
+  console.log(g.shift());           // a=[1],返回：[4,5]
+  console.log(g.shift());           // a=[],返回：1
+
+  /*
+   * toString()方法
+   * 将数组每个元素转化为字符串（如有必要将调用元素的toString()方法）并且输出用逗号分隔的字符串列表。
+   * 注意：输出不包括方括号或其他任何形式的包裹数组值得分隔符。
+   *
+   * toLocaleString()方法
+   * toString的本地化版本
+   */
+  console.log([1, 2, 3].toString());
+  console.log(['a', 'b', 'c'].toString());
+  console.log([1, 2, ['b', [9, 'def'], 'c'], 3].toString());
+  console.log("toString 和 toLocaleString的区别：");
+  const h = 12345;
+  console.log(h.toString());            //12345
+  console.log(h.toLocaleString());      //12,345
+  const hh = new Date();
+  console.log(hh.toString());           //Mon Oct 12 2020 10:54:30 GMT+0800 (中国标准时间)
+  console.log(hh.toLocaleString());     // 2020/10/12 上午10:54:30
+
+  /*
+  * forEach()方法
+  * 从头至尾遍历数组。
+  * 三个参数：数组元素，元素索引，数组本身,如果只关心数组的值，可只取一个参数
+  * 注意：forEach 无法在所有元素都传递给调用的函数之前终止遍历。
+  *       即没有break语句。如果想要提前终止，必须把forEach放在try块中，并能抛出一个异常。
+  *       如果forEach调用的函数抛出foreach.break异常，循环会提前终止
+  */
+  const data = [1, 2, 3, 4, 5];
+  // 求数组元素之和
+  var sum = 0;
+  data.forEach(value => {
+    sum += value;
+  });
+  console.log(sum);       //返回:15
+  // 每个数组值自加1
+  data.forEach((v, i, a) => {
+    a[i] = v + 1;
+  });
+  console.log(data);        //返回:[2, 3, 4, 5, 6]
+
+  /*
+   * map()方法
+   * 将调用数组的每一个元素传递给指定函数，并返回一个数组，包含该函数的返回值。
+   * 注意：map 返回的是新数组，不修改调用的数组。
+   * 如果是稀疏数组，返回的也是相同方式的稀疏数组：它具有相同的长度，相同的缺失元素。
+   */
+  const k = [1, 2, 3];
+  const kk = k.map((x) => {
+    return x * x;
+  });
+  console.log(kk);        //返回:[1,4,9]
+
+  /*
+   * filter()方法
+   * 返回的数组元素是调用的数组的一个子集，
+   * 传递的函数是用来逻辑判定的：该函数返回true或false。
+   */
+  const l = [5, 4, 3, 2, 1];
+  const smallValues = l.filter((x) => {
+    return x < 3;
+  });
+  console.log(smallValues);        //返回:[2,1]
+  const everyOther = l.filter((x, i) => {
+    return i % 2 == 0
+  });
+  console.log(everyOther);        //返回:[5, 3, 1]
+  // 注意：filter 会跳过稀疏数组中缺少的元素，它返回数组总是稠密的。
+  var sparse = [[1, , , 0, 4,],
+    [1, undefined, 2, 0, 1,],
+    [1, 0, 5, null, 4,]];
+  var dense = sparse.filter(() => {
+    return true;
+  });//压缩稀疏数组的空缺
+  console.log(dense)
+  const ll = sparse.filter((x) => {
+    return x !== undefined && x != null;
+  });
+  console.log(ll);//压缩稀疏数组的空缺,被删除undefined和null
+
+  /*
+   * every()方法、some()方法
+   * 数组逻辑判断。对数组元素应用指定的函数进行判定，返回true或false。
+   * 一旦确认该返回什么值就会停止遍历数组元素
+   */
+  // every() 所有为true，返回true
+  const m = [1, 2, 3, 4, 5];
+  const mm = m.every((x) => {
+    return x < 10;
+  });
+  console.log(mm);        //返回:true   所有值都<10
+  const mmm = m.every((x) => {
+    return x % 2 === 0;
+  });
+  console.log(mmm);        //返回:false   不是所有值都是偶数
+  // some() 所有为false，返回false
+  console.log(m.some(isNaN));        //返回:false   不包含非数值元素
+  const mmmm = m.some((x) => {
+    return x % 2 === 0;
+  });
+  console.log(mmmm);        //返回:true   含有偶数值
+
+  /*
+   * map()方法
+   * 将调用数组的每一个元素传递给指定函数，并返回一个数组，包含该函数的返回值。
+   * 注意：map 返回的是新数组，不修改调用的数组。
+   * 如果是稀疏数组，返回的也是相同方式的稀疏数组：它具有相同的长度，相同的缺失元素。
+   */
+
+  /*
+   * map()方法
+   * 将调用数组的每一个元素传递给指定函数，并返回一个数组，包含该函数的返回值。
+   * 注意：map 返回的是新数组，不修改调用的数组。
+   * 如果是稀疏数组，返回的也是相同方式的稀疏数组：它具有相同的长度，相同的缺失元素。
+   */
+
+  /*
+   * map()方法
+   * 将调用数组的每一个元素传递给指定函数，并返回一个数组，包含该函数的返回值。
+   * 注意：map 返回的是新数组，不修改调用的数组。
+   * 如果是稀疏数组，返回的也是相同方式的稀疏数组：它具有相同的长度，相同的缺失元素。
+   */
+
+  /*
+   * map()方法
+   * 将调用数组的每一个元素传递给指定函数，并返回一个数组，包含该函数的返回值。
+   * 注意：map 返回的是新数组，不修改调用的数组。
+   * 如果是稀疏数组，返回的也是相同方式的稀疏数组：它具有相同的长度，相同的缺失元素。
+   */
+
+  /*
+   * map()方法
+   * 将调用数组的每一个元素传递给指定函数，并返回一个数组，包含该函数的返回值。
+   * 注意：map 返回的是新数组，不修改调用的数组。
+   * 如果是稀疏数组，返回的也是相同方式的稀疏数组：它具有相同的长度，相同的缺失元素。
+   */
+
+  /*
+   * map()方法
+   * 将调用数组的每一个元素传递给指定函数，并返回一个数组，包含该函数的返回值。
+   * 注意：map 返回的是新数组，不修改调用的数组。
+   * 如果是稀疏数组，返回的也是相同方式的稀疏数组：它具有相同的长度，相同的缺失元素。
+   */
+
+</script>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>异步载入并执行脚本</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+  function loadAsync(url) {
+    let head = document.getElementsByTagName("head")[0];
+    let s = document.createElement("script");
+    s.src = url;
+    head.appendChild(s);
+  }
+  loadAsync(js)
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript、css如何嵌入HTML</title>
+</head>
+<body>
+JavaScript、css如何嵌入HTML
+<h1>Digital Clock</h1>
+<span id="clock"></span>
+</body>
+<script type="text/javascript">
+  function displayTime() {
+    const elt = document.getElementById("clock");
+    let now = new Date();
+    elt.innerHTML=now.toString();
+    setTimeout(displayTime,1000);
+  }
+  window.onload = displayTime;
+</script>
+<style type="text/css">
+  #clock{
+    font: bold 24pt sans;
+    background: #ddf;
+    padding: 10px;
+    border: solid black 2px;
+    border-radius: 10px;
+  }
+</style>
+</html>

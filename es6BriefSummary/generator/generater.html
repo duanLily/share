@@ -9,18 +9,19 @@
 </body>
 <script>
   /**
-   * generator 生成器
+   * generator 生成器 ：异步编程解决方案
    *  推一步，走一步，在yield处暂停
    *  generator 不可以写成箭头函数
    */
   function* show() {
-    alert("a");
-    yield;
-    alert("b");
+    console.log("a");
+    yield "a finish";
+    console.log("b");
   }
 
   let gen = show();
-  gen.next();
-  gen.next();
+  console.log(gen);
+  console.log(gen.next());
+  console.log(gen.next());
 </script>
 </html>

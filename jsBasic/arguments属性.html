@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>arguments属性</title>
+</head>
+<body>
+arguments属性
+<script type="text/javascript">
+  // 阶乘
+  function factorial(num) {
+    if (num <= 1) {
+      return 1;
+    } else {
+      /*解耦前*/
+      // return num * factorial(num-1);
+      /*解耦后*/
+      return num * arguments.callee(num - 1);
+    }
+  };
+  var trueFac = factorial;
+  factorial = function () {
+    return 0;
+  };
+  console.log(trueFac(5)); // 120
+  console.log(factorial(5)); // 0
+
+
+  function ArgTest(){
+    var i, s, numargs = arguments.length;
+    s = numargs;
+    if (numargs < 2)
+      s += " argument was passed to ArgTest. It was ";
+    else
+      s += " arguments were passed to ArgTest. They were " ;
+    for (i = 0; i < numargs; i++)
+    {
+      s += arguments[i] + " ";
+    }
+    return(s);
+  }
+  console.log("============"+ArgTest());
+
+  function foo(x,y,z,a,b,c) {
+    console.log("arguments.length:"+arguments.length);
+    console.log("arguments[0]:"+arguments[0]);
+    arguments[0] = 10;
+    console.log("赋值后x的值："+x);
+    arguments[2] = 100;
+    console.log("赋值后的z的值："+z);
+  }
+  foo(1,2);
+  console.log(foo.length);
+  console.log(foo.name);
+</script>
+</body>
+</html>
