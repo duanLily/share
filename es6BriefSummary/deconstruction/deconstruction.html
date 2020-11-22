@@ -11,29 +11,163 @@
   /**
    * 解构赋值
    *  1、左右结构必须一致
-   *  2、右边必须是个东西
+   *  2、右边必须是个东西(可遍历的结构)
    *  3、声明和赋值不能分开（必须在一句话里面）
    */
-  let [a,b,c] = [1,2,3];
-  console.log(a,b,c);
+  let [a, b, c] = [1, 2, 3];
+  console.log(a, b, c);
   // let {e,f,g} = {a:11,b:12,c:13}; // 不可行，参数对应不上
-  let {e,f,g} = {e:11,f:12,g:13};
-  console.log(e,f,g);
+  let {e, f, g} = {e: 11, f: 12, g: 13};
+  console.log(e, f, g);
 
   // let [{x,y},[n1,n2,n3],z,q] = [{x:12,y:5},[1,23,4],8,'test'];
   // console.log(x,y,n1,n2,n3,z,q);
   // let [json,[n1,n2,n3],z,q] = [{x:12,y:5},[1,23,4],8,'test'];
   // console.log(json,n1,n2,n3,z,q);
-  let [json,arr,z,q] = [{x:12,y:5},[1,23,4],8,'test'];
-  console.log(json,arr,z,q);
+  let [json, arr, z, q] = [{x: 12, y: 5}, [1, 23, 4], 8, 'test'];
+  console.log(json, arr, z, q);
 
   // let {m,n} = {12,5}; // 右边不合法，右边得是一个json
   // console.log(m,n);
 
-  let [xx,yy]=[12,5];
-/*  let [xx,yy];
-  [xx,yy] =[12,5];*/
-  console.log(xx,yy);
+  let [xx, yy] = [12, 5];
+  /*  let [xx,yy];
+    [xx,yy] =[12,5];*/
+  console.log(xx, yy);// 12 5
 
+  /**
+   * fibs是一个 Generator 函数，
+   * 原生具有 Iterator 接口。
+   * 解构赋值会依次从这个接口获取值。
+   */
+  // iterableF();
+  function iterableF() {
+    function* fibs() {
+      let a = 0;
+      let b = 1;
+      while (true) {
+        yield a;
+        [a, b] = [b, a + b];
+      }
+    }
+
+    let [first, second, third, fourth, fifth, sixth] = fibs();
+    console.log(sixth); // 5
+  }
+
+  /**
+   * 报错，因为等号右边的值，
+   * 要么转为对象以后不具备 Iterator 接口（前五个表达式），
+   * 要么本身就不具备 Iterator 接口（最后一个表达式）
+   */
+  // 报错
+  // disF();
+  function disF() {
+    let [foo1] = 1;
+    let [foo2] = false;
+    let [foo3] = NaN;
+    let [foo4] = undefined;
+    let [foo5] = null;
+    let [foo6] = {};
+  }
+
+  /**
+   * 解构赋值允许指定默认值。
+   * ES6 内部使用严格相等运算符（===），判断一个位置是否有值。
+   * 所以，只有当一个数组成员严格等于undefined，默认值才会生效。
+   */
+  // defaultF();
+  function defaultF() {
+    let [xxx = 1] = [undefined];
+    console.log(xxx);  // 1
+    let [yyy = 1] = [null];
+    console.log(yyy);  // null
+  }
+
+  /**
+   * 对象的解构与数组有一个重要的不同。
+   * 数组的元素是按次序排列的，变量的取值由它的位置决定；
+   * 而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
+   */
+  // noticeF1();
+
+  //不将大括号写在行首，避免 JavaScript 将其解释为代码块
+  function noticeF1() {
+    // 错误的写法
+    let x;
+    // {x} = {x: 1}; // SyntaxError: syntax error
+    // 正确的写法
+    ({x} = {x: 1});
+    console.log(x)
+  }
+
+  // noticeF2();
+
+  //  由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构。
+  function noticeF2() {
+    let arr = [1, 2, 3];
+    let {0: first, [arr.length - 1]: last} = arr;
+    console.log(first);// 1
+    console.log(last);// 3
+  }
+
+  /**
+   * 解构赋值时，如果等号右边是数值和布尔值，则会先转为对象。
+   * 数值和布尔值的包装对象都有toString属性，因此变量s都能取到值。
+   *
+   * 解构赋值的规则是，只要等号右边的值不是对象或数组，
+   * 就先将其转为对象。由于undefined和null无法转为对象，
+   * 所以对它们进行解构赋值，都会报错。
+   */
+  // numBoolF();
+
+  function numBoolF() {
+    let {toString: ss} = 123;
+    console.log(ss === Number.prototype.toString);// true
+
+    let {toString: sss} = true;
+    console.log(sss === Boolean.prototype.toString); // true
+
+    // let { prop: x } = undefined; // TypeError
+    // let { prop: y } = null; // TypeError
+  }
+
+  /**
+   * undefined就会触发函数参数的默认值。
+   */
+  // funF();
+
+  function funF() {
+    let x = [1, undefined, 3].map((x = 'yes') => x);// [ 1, 'yes', 3 ]
+    console.log(x);
+  }
+
+  /**
+   * 任何部署了 Iterator 接口的对象，都可以用for...of循环遍历。
+   * Map 结构原生支持 Iterator 接口，配合变量的解构赋值，
+   * 获取键名和键值就非常方便。
+   */
+  // iteratorF();
+
+  function iteratorF() {
+    const map = new Map();
+    map.set('first', 'hello');
+    map.set('second', 'world');
+
+    for (let [key, value] of map) {
+      console.log(key + " is " + value);
+    }
+    // first is hello
+    // second is world
+  }
+
+  /**
+   * 加载模块时，往往需要指定输入哪些方法。解构赋值使得输入语句非常清晰。
+   */
+  // loadM();
+
+  function loadM() {
+    const { SourceMapConsumer, SourceNode } = require("source-map");
+  }
 </script>
 </html>

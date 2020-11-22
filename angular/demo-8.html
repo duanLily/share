@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>angularJS入门小Demo-8 内置服务</title>
+	<!-- 设置字符集 -->
+	<meta charset="utf-8" />
+	<script src="angular.min.js"></script> 
+	<script>
+	//定义了一个叫myApp的模块   []里面放要引用的模块
+	var app=angular.module('myApp',[]);
+	//通过模块来创建控制器  $scope是控制层与试图层之间交换数据的桥梁
+	app.controller('myController',function($scope){
+		//定义一个数组
+		$scope.list=[
+			//{}表示对象
+			{name:'张三',math:100,Chinese:99},
+			{name:'Tony',math:99,Chinese:90},
+			{name:'Marry',math:89,Chinese:88}
+		];
+	});
+	</script>
+</head>
+<!-- 引入angular后，只有body标签中加上ng-app，angular才起作用  这里的ng-app就是一个指令-->
+<!--指定模块名称    ng-controller指令指定控制器-->
+<body ng-app="myApp" ng-controller="myController">
+	<table>
+		<tr>
+			<td>姓名</td>
+			<td>数学</td>
+			<td>语文</td>
+		</tr>
+		<tr ng-repeat="entity in list">
+			<td>{{entity.name}}</td>
+			<td>{{entity.math}}</td>
+			<td>{{entity.Chinese}}</td>
+		</tr>
+	</table>
+</body>
+</html>

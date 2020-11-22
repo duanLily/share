@@ -10,7 +10,71 @@
 <input type="button" value="按钮3">
 </body>
 <script>
-  window.onload = function () {
+  // varf();
+  // xielouQuanju();
+  // letF();
+  // iifeF();
+  // blockScope();
+  /**
+   * ES5 只有全局作用域和函数作用域，没有块级作用域，
+   * 这带来很多不合理的场景。
+   * 第一种场景，内层变量可能会覆盖外层变量。
+   */
+  var tmp = new Date();
+
+  function varf() {
+    console.log(tmp);
+    if (false) {
+      var tmp = 'hello world';
+    }
+  }
+
+  /**
+   * 第二种场景，用来计数的循环变量泄露为全局变量
+   * 变量i只用来控制循环，
+   * 但是循环结束后，
+   * 它并没有消失，
+   * 泄露成了全局变量。
+   */
+  function xielouQuanju() {
+    var s = 'hello';
+    for (var i = 0; i < s.length; i++) {
+      console.log(s[i]);
+    }
+    console.log(i); // 5
+  }
+
+  /**
+   * 块级作用域：外层代码块不受内层代码块的影响。
+   */
+  function letF() {
+    let n = 5;
+    if (true) {
+      let n = 10;
+    }
+    console.log(n); // 5
+  }
+
+  /**
+   *IIFE 写法:Immediately Invoked Function Expression，
+   * 意为立即调用的函数表达式，
+   * 也就是说，声明函数的同时立即调用这个函数。
+   */
+  function iifeF() {
+// IIFE 写法
+    (function () {
+      var tmp = 123;
+      console.log(tmp);
+    }());
+
+    // 块级作用域写法
+    {
+      let tmp = 124;
+      console.log(tmp)
+    }
+  }
+
+  function blockScope() {
     var aBtn = document.getElementsByTagName("input");
     /*for (var i = 0; i < aBtn.length; i++) {
       aBtn[i].onclick = function () {
@@ -18,19 +82,19 @@
       }
     }*/
 
-   /* for (var i = 0; i < aBtn.length; i++) {
-      (function (i) {
-        aBtn[i].onclick = function () {
-          console.log(i);  // 0 1 2
-        }
-      })(i);
-    }*/
+    /* for (var i = 0; i < aBtn.length; i++) {
+       (function (i) {
+         aBtn[i].onclick = function () {
+           console.log(i);  // 0 1 2
+         }
+       })(i);
+     }*/
 
-     for (let i = 0; i < aBtn.length; i++) {
-       aBtn[i].onclick = function () {
-         console.log(i)  // 0 1 2
-       }
-     }
+    for (let i = 0; i < aBtn.length; i++) {
+      aBtn[i].onclick = function () {
+        console.log(i)  // 0 1 2
+      }
+    }
   }
 </script>
 </html>

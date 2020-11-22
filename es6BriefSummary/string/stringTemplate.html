@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>stringTemplate</title>
+  <script src="../jquery.js"></script>
 </head>
 <body>
+<div id="list">
 
+</div>
 </body>
 <script>
   /**
    * ``   字符串模板
    *  1、连接字符串、
-   *     1）、直接把东西塞到字符串里面  ${东西}
+   *     1）、直接把东西塞到字符串里面  ${东西} 模板字符串中嵌入变量，需要将变量名写在${}之中。
    *     2）、可以换行书写
    */
   let title = "标题";
@@ -28,5 +31,11 @@
 </div>`;
   console.log(str);
   console.log(str1);
+  $('#list').html(`
+<ul>
+  <li>first</li>
+  <li>second</li>
+</ul>
+`);
 </script>
 </html>

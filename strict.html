@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>strict</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * "use strict" 指令只允许出现在脚本或函数的开头。
+   * 严格模式的限制
+   * 1、不允许使用未声明的变量
+   * 2、不允许删除变量和对象
+   * 3、不允许删除函数
+   * 4、不允许变量重名
+   * 5、不允许使用八进制
+   * 6、不允许使用转义字符
+   * 7、不允许对只读属性赋值
+   * 8、不允许对一个使用getter方法读取的属性进行赋值
+   * 9、不允许删除一个不允许删除的属性
+   * 10、变量名不能使用 "eval" 字符串
+   * 11、变量名不能使用 "arguments" 字符串
+   * 12、不允许使用以下这种语句
+   * 13、由于一些安全原因，在作用域 eval() 创建的变量不能被调用
+   * 14、禁止this关键字指向全局对象
+   */
+  "use strict";
+  x = 3.14; // 报错 (x 未定义)
+  y = {p1:10, p2:20};  // 报错 (x 未定义)
+  "use strict";
+  var x = 3.14;
+  delete x;   // 报错
+  function x(p1, p1) {};   // 报错
+  var x = 010;             // 报错
+  var x = \010;
+  var obj = {};
+  Object.defineProperty(obj, "x", {value:0, writable:false});
+  obj.x = 3.14;            // 报错
+  var obj = {get x() {return 0} };
+  obj.x = 3.14;            // 报错
+  delete Object.prototype; // 报错
+  var eval = 3.14;         // 报错
+  var arguments = 3.14;    // 报错
+  with (Math){x = cos(2)}; // 报错
+  eval ("var x = 2");
+  alert (x);               // 报错
+  function f(){
+    return !this;
+  }
+  // 返回false，因为"this"指向全局对象，"!this"就是false
+
+  function f(){
+    "use strict";
+    return !this;
+  }
+  // 返回true，因为严格模式下，this的值为undefined，所以"!this"为true。
+</script>
+</html>

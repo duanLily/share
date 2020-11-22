@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>变量提升</title>
+</head>
+<body>
+
+</body>
+<script>
+  // var 的情况
+  varF();
+  // let 的情况
+  // letF();
+  // const 的情况
+  // constF();
+  function varF() {
+    console.log(foo); // 输出undefined
+    var foo = 2;
+  }
+
+  function letF() {
+    console.log(bar); // 报错ReferenceError
+    let bar = 2;
+  }
+
+  function constF() {
+    console.log(ar); // 报错ReferenceError
+    const ar = 2;
+  }
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>temporalDeadZone</title>
+</head>
+<body>
+
+</body>
+<script>
+  // 暂时性死区
+  // TDZ();
+  // TDZ1();
+  // typeofF();
+  // DZ();
+
+  /**
+   * ES6 明确规定，如果区块中存在let和const命令，
+   * 这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。
+   * 凡是在声明之前就使用这些变量，就会报错。
+   */
+
+  function TDZ() {
+    if (true) {
+      // TDZ开始
+      tmp = 'abc'; // ReferenceError
+      console.log(tmp); // ReferenceError
+
+      let tmp; // TDZ结束
+      console.log(tmp); // undefined
+
+      tmp = 123;
+      console.log(tmp); // 123
+    }
+  }
+
+  function TDZ1() {
+    var tmp = 123;
+
+    if (true) {
+      tmp = 'abc'; // ReferenceError
+      let tmp;
+    }
+  }
+
+  /**
+   * “暂时性死区”也意味着typeof不再是一个百分之百安全的操作。
+   * 作为比较，如果一个变量根本没有被声明，使用typeof反而不会报错。
+   */
+  function typeofF() {
+    console.log(typeof undeclared_variable);// "undefined"
+    console.log(typeof x); // ReferenceError
+    let x;
+  }
+
+  /**
+   *参数x默认值等于另一个参数y，
+   * 而此时y还没有声明，属于“死区”。
+   */
+  function DZ(x = y, y = 2) {
+    console.log([x, y]);
+  }
+
+</script>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>angularJS入门小Demo-4 控制器</title>
+	<script src="angular.min.js"></script> 
+	<script>
+	//定义了一个叫myApp的模块   []里面放要引用的模块
+	var app=angular.module('myApp',[]);
+	//通过模块来创建控制器  $scope是控制层与试图层之间交换数据的桥梁
+	app.controller('myController',function($scope){
+		//add2这种方法只能在控制器内调用
+		//add2=function(){};
+		$scope.add=function(){
+			return parseInt($scope.x)+parseInt($scope.y);
+			//$scope.x+$scope.y;
+		}
+	});
+	</script>
+</head>
+<!-- 引入angular后，只有body标签中加上ng-app，angular才起作用  这里的ng-app就是一个指令-->
+<!--指定模块名称    ng-controller指令指定控制器-->
+<body ng-app="myApp" ng-controller="myController">
+	第一个数：<input ng-model="x">
+	第二个数：<input ng-model="y">
+	运算结果：{{add()}}
+</body>
+</html>

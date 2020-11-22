@@ -1,0 +1,13 @@
+<html>
+<head>
+	<title>angularJS入门小Demo-3 初始化指令</title>
+	<script src="angular.min.js"></script>
+</head>
+<!-- 引入angular后，只有body标签中加上ng-app，angular才起作用  这里的ng-app就是一个指令-->
+<!-- 初始化指令ng-init   给姓名一个初始值Tony-->
+<body ng-app ng-init="name='Tony'">
+<!-- 绑定指令ng-model -->
+<p>请输入姓名：<input ng-model="name"></p>
+{{name}}
+</body>
+</html>

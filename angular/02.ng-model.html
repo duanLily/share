@@ -1,0 +1,15 @@
+<html>
+<head>
+	<title>angularJS入门小Demo-2 双向绑定</title>
+	<script src="angular.min.js"></script>
+</head>
+<!-- 引入angular后，只有body标签中加上ng-app，angular才起作用  这里的ng-app就是一个指令-->
+<body ng-app>
+<!-- 绑定指令ng-model -->
+请输入姓名：<input type="text" ng-model="name">
+<h1>Hello {{name}}</h1>
+<p ng-bind="name"></p>
+<br>
+你输入的姓名是：{{name}}
+</body>
+</html>

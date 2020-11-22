@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>includes()、startsWith()、endsWith()</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * startsWith
+   *  是否匹配以(参数)开头，返回bool值
+   * endsWith
+   *  是否匹配以(参数)结尾，返回bool值
+   *
+   * includes()：返回布尔值，表示是否找到了参数字符串。
+   * startsWith()：返回布尔值，表示参数字符串是否在原字符串的头部。
+   * endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。
+   *
+   * 支持第二个参数，表示开始搜索的位置。
+   * 使用第二个参数n时，endsWith的行为与其他两个方法有所不同。
+   * 它针对前n个字符，而其他两个方法针对从第n个位置直到字符串结束。
+   */
+  let str = "Hello world";
+  console.log(str.includes("world",6));
+  console.log(str.endsWith("d",7));
+  console.log(str.startsWith("w",6));
+</script>
+</html>
