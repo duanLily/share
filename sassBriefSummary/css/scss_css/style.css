@@ -1,0 +1,113 @@
+@charset "UTF-8";
+/* scss注释
+   多行注释  编译后会输出到css里面(compressed情况下会省略)*/
+/*!强制输出的注释内容 编译后会输出到css里面*/
+/*变量*/
+div.box {
+  background-color: #1269b5; }
+
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #1269b5; }
+
+/*嵌套*/
+.nav {
+  height: 100px; }
+  .nav ul {
+    margin: 0; }
+    .nav ul li {
+      float: left;
+      list-style: none;
+      padding: 5px; }
+    .nav ul a {
+      display: block;
+      color: #fff;
+      padding: 5px;
+      /*&嵌套时调用父选择器*/ }
+      .nav ul a:hover {
+        background-color: #c6fff5;
+        color: #ffffff; }
+  .nav .nav-text {
+    font-size: 15px; }
+
+/*嵌套属性  重复内容抽出来*/
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  font-weight: normal; }
+
+.navigate {
+  border: 1px solid #c6fff5;
+    border-left: 0;
+    border-right: 0; }
+
+/*@mixin定义
+@include使用*/
+.alert-warning {
+  color: antiquewhite;
+  background-color: #fff; }
+  .alert-warning a {
+    color: pink; }
+
+/*带参数的mixin  参数定义顺序和使用顺序一致,或者直接传键值对*/
+.use-div {
+  color: blue;
+  background-color: pink; }
+  .use-div a {
+    color: #0000cc; }
+
+.use-info {
+  color: pink;
+  background-color: blue; }
+  .use-info a {
+    color: #ff8da1; }
+
+/*@extend 继承*/
+.father-div, .child-div {
+  padding: 2px; }
+
+.child-div {
+  background-color: lightblue; }
+
+/*@import引入Partials   Partials使css模块化，更有条理性*/
+/*文件名前加_，编译后文件就不会输出css*/
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #444; }
+
+.use-import {
+  background-color: #444;
+  color: #ffc800; }
+
+/*颜色表示方式:
+RGB:红(0-255) 绿(0-255) 蓝(0-255)
+RGBA:红(0-255) 绿(0-255) 蓝(0-255) 透明度透明度(0-1)
+HSL:色相(0-360) 饱和度(0-100) 明度(0-100)
+HSLA:色相(0-360) 饱和度(0-100) 明度(0-100) 透明度(0-1)
+adjust-hue:调整颜色的色相值
+lighten:调整颜色的亮度
+darken:调整颜色的暗度
+saturate:增加颜色的纯度
+desaturate:减少颜色的纯度
+opacify:减少透明度
+transparentize:增加透明度
+*/
+.adjust-color-div {
+  background-color: #00ff48; }
+
+.ld-color-div {
+  border: 1px solid #004dff;
+  background-color: #99b8ff;
+  color: #002e99; }
+
+.saturate-div {
+  background-color: #004dff; }
+
+.desaturate-div {
+  background-color: #4066bf; }
+
+.opacify-color {
+  background-color: #004dff;
+  border: 1px solid rgba(0, 77, 255, 0.8); }
+
+/*# sourceMappingURL=style.css.map */
