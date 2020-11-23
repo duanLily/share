@@ -1,14 +1,158 @@
-ul{
-  font-size: 15px;
-  li{
-    list-style: none;
-  }
-}
+/* scss注释
+   多行注释  编译后会输出到css里面(compressed情况下会省略)*/
+// 单行注释
+// 单行注释  编译后不会输出到css里面
+/*!强制输出的注释内容 编译后会输出到css里面*/
 
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+/*变量*/
+$font-stack: Helvetica, sans-serif;
+$primary-color: #1269b5;
+
+div.box {
+  background-color: $primary-color;
+}
 
 body {
   font: 100% $font-stack;
   color: $primary-color;
+}
+
+/*嵌套*/
+.nav {
+  height: 100px;
+
+  ul {
+    margin: 0;
+
+    li {
+      float: left;
+      list-style: none;
+      padding: 5px;
+    }
+
+    a {
+      display: block;
+      color: #fff;
+      padding: 5px;
+
+      /*&嵌套时调用父选择器*/
+      &:hover {
+        background-color: #c6fff5;
+        color: #ffffff;
+      }
+    }
+  }
+
+  & &-text {
+    font-size: 15px;
+  }
+}
+
+/*嵌套属性  重复内容抽出来*/
+body {
+  font: {
+    family: Helvetica, Arial, sans-serif;
+    size: 17px;
+    weight: normal;
+  }
+}
+
+.navigate {
+  border: 1px solid #c6fff5 {
+    left: 0;
+    right: 0;
+  };
+}
+
+/*@mixin定义
+@include使用*/
+@mixin alert {
+  color: antiquewhite;
+  background-color: #fff;
+  a {
+    color: pink;
+  }
+}
+
+.alert-warning {
+  @include alert;
+}
+
+/*带参数的mixin  参数定义顺序和使用顺序一致,或者直接传键值对*/
+@mixin common-div($text-color,$background) {
+  color: $text-color;
+  background-color: $background;
+  a {
+    color: darken($text-color, 10%);
+  }
+}
+
+.use-div {
+  @include common-div(blue, pink);
+}
+
+.use-info {
+  @include common-div($background: blue, $text-color: pink);
+}
+
+/*@extend 继承*/
+.father-div {
+  padding: 2px;
+}
+
+.child-div {
+  @extend .father-div;
+  background-color: lightblue;
+}
+
+/*@import引入Partials   Partials使css模块化，更有条理性*/
+@import 'base';
+
+.use-import {
+  background-color: $base-color;
+  color: rgb(255, 200, 0);
+}
+
+/*颜色表示方式:
+RGB:红(0-255) 绿(0-255) 蓝(0-255)
+RGBA:红(0-255) 绿(0-255) 蓝(0-255) 透明度透明度(0-1)
+HSL:色相(0-360) 饱和度(0-100) 明度(0-100)
+HSLA:色相(0-360) 饱和度(0-100) 明度(0-100) 透明度(0-1)
+adjust-hue:调整颜色的色相值
+lighten:调整颜色的亮度
+darken:调整颜色的暗度
+saturate:增加颜色的纯度
+desaturate:减少颜色的纯度
+opacify:减少透明度
+transparentize:增加透明度
+*/
+$ori-color: #ff0000;
+.adjust-color-div {
+  background-color: adjust_hue($ori-color, 137deg);
+}
+
+$ba-color: hsl(222, 100%, 50%);
+$light-color: lighten($ba-color, 30%);
+$darken-color: darken($ba-color, 20%);
+.ld-color-div{
+  border: 1px solid $ba-color;
+  background-color: $light-color;
+  color: $darken-color;
+}
+
+$saturate-color:saturate($ba-color,50%);
+$desaturate-color:desaturate($ba-color,50%);
+.saturate-div{
+  background-color: $saturate-color;
+}
+.desaturate-div{
+  background-color: $desaturate-color;
+}
+
+$fade-in-color:opacify($ba-color,0.3);
+$fade-out-color:transparentize($ba-color,0.2);
+
+.opacify-color{
+  background-color: $fade-in-color;
+  border: 1px solid $fade-out-color;
 }
