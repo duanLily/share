@@ -1,5 +1,5 @@
 /* scss注释
-   多行注释  编译后会输出到css里面(compressed情况下会省略)*/
+   多行注释  编译后会输出到css里面(compressed情况下会省略) */
 // 单行注释
 // 单行注释  编译后不会输出到css里面
 /*!强制输出的注释内容 编译后会输出到css里面*/
@@ -39,7 +39,6 @@ body {
       }
     }
   }
-
   & &-text {
     font-size: 15px;
   }
@@ -62,35 +61,37 @@ body {
 ;
 }
 
-/*@mixin定义
-@include使用*/
-@mixin alert {
-  color: antiquewhite;
-  background-color: #fff;
-  a {
-    color: pink;
-  }
+/* 数字运算 */
+p {
+  width: 1in + 8pt;
 }
 
-.alert-warning {
-  @include alert;
+/* 除法运算 /被视为除号的三种情况
+如果值，或值的一部分，是变量或者函数的返回值
+如果值被圆括号包裹
+如果值是算数表达式的一部分 */
+p {
+  $width: 1000px;
+  $font-size: 12px;
+  $line-height: 30px;
+  width: $width/2;
+  font: 10px/8px;
+  /* 使用变量，又要确保 / 不做除法运算而是完整地编译到 CSS 文件中，只需要用插值语句将变量包裹 */
+  font: #{$font-size}/#{$line-height};
+  padding: round(1.5)/2+px;
+  height: (500px/2);
+  margin-left: 5px + 8px/2px;
 }
 
-/* 带参数的mixin  参数定义顺序和使用顺序一致,或者直接传键值对 */
-@mixin common-div($text-color,$background) {
-  color: $text-color;
-  background-color: $background;
-  a {
-    color: darken($text-color, 10%);
-  }
-}
-
-.use-div {
-  @include common-div(blue, pink);
-}
-
-.use-info {
-  @include common-div($background: blue, $text-color: pink);
+/* 字符串运算 */
+p:before {
+  content: "Foo " + Bar;
+  font-family: sans- + "serif";
+  /* 在有引号的文本字符串中使用插值语句可以添加动态的值 */
+  contents: "I ate #{5 + 10} pies!";
+  /* 空的值被视作插入了空字符串 */
+  $value: null;
+  contentss: "I ate #{$value} pies!";
 }
 
 /* @import 引入Partials   Partials使css模块化，更有条理性 */
@@ -214,6 +215,12 @@ all（表示所有）,  media（表示 media），
     }
   }
 }
+
+/* @debug 在控制台打印表达式的值 */
+@debug 10em + 12em;
+/* @warn 提示信息会输出在命令行 */
+
+/* @error 报错会直接影响css输出 */
 /*颜色表示方式:
 RGB:红(0-255) 绿(0-255) 蓝(0-255)
 RGBA:红(0-255) 绿(0-255) 蓝(0-255) 透明度透明度(0-1)
@@ -318,10 +325,42 @@ $i: 6;
   $i: $i - 2;
 }
 
+/* @mixin定义
+@include使用 */
+
+@mixin alert {
+  color: antiquewhite;
+  background-color: #fff;
+  a {
+    color: pink;
+  }
+}
+
+.alert-warning {
+  @include alert;
+}
+
+/* 带参数的mixin  参数定义顺序和使用顺序一致,或者直接传键值对 */
+@mixin common-div($text-color,$background) {
+  color: $text-color;
+  background-color: $background;
+  a {
+    color: darken($text-color, 10%);
+  }
+}
+
+.use-div {
+  @include common-div(blue, pink);
+}
+
+.use-info {
+  @include common-div($background: blue, $text-color: pink);
+}
+
 /* 用户自定义函数 */
 /* @function 名称 (参数1，参数2){...} */
 /* @warn 提示信息会输出在命令行 */
-/* @@error 报错会直接影响css输出 */
+/* @error 报错会直接影响css输出 */
 $colors: (light:white, dark:black);
 @function getColor($key) {
   @if not map-has_key($colors,$key) {
@@ -334,4 +373,19 @@ $colors: (light:white, dark:black);
 .color-div {
   background-color: getColor(dark);
   //background-color: getColor(blue);
+}
+
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar {
+  width: grid-width(5);
+}
+
+#sidebar1 {
+  width: grid-width($n: 5);
 }
