@@ -9,12 +9,15 @@ $font-stack: Helvetica, sans-serif;
 $primary-color: #1269b5;
 
 div.box {
-  background-color: $primary-color;
+  $bgc1:blue;
+  $bgc:pink !global;
+  color: $primary-color;
+  background-color: $bgc1;
 }
 
 body {
   font: 100% $font-stack;
-  color: $primary-color;
+  background-color: $bgc;
 }
 
 /* 嵌套规则
@@ -58,7 +61,6 @@ body {
     left: 0;
     right: 0;
   }
-;
 }
 
 /* 数字运算 */
@@ -108,7 +110,7 @@ p:before {
 
 /* 使用插值语句导入文件 */
 $family: unquote("Droid+Sans");
-@import url("http://fonts.googleapis.com/css?family=\#{$family}");
+@import url("http://fonts.googleapis.com/css?family=#{$family}");
 /* @media
 允许其在 CSS 规则中嵌套。如果 @media 嵌套在 CSS 规则内，编译时，
 @media 将被编译到文件的最外层，包含嵌套的父选择器。
@@ -150,6 +152,10 @@ $value: landscape;
 .message {
   @extend %message-shared;
   color: pink;
+}
+.success{
+  @extend %message-shared;
+  background-color: #fff;
 }
 
 .father-div {
@@ -371,8 +377,8 @@ $colors: (light:white, dark:black);
 }
 
 .color-div {
-  background-color: getColor(dark);
-  //background-color: getColor(blue);
+  //background-color: getColor(dark);
+  background-color: getColor(blue);
 }
 
 $grid-width: 40px;

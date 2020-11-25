@@ -3,13 +3,14 @@
    多行注释  编译后会输出到css里面(compressed情况下会省略) */
 /*!强制输出的注释内容 编译后会输出到css里面*/
 /* 变量 */
-@import url("http://fonts.googleapis.com/css?family=#{$family}");
+@import url("http://fonts.googleapis.com/css?family=Droid+Sans");
 div.box {
-  background-color: #1269b5; }
+  color: #1269b5;
+  background-color: blue; }
 
 body {
   font: 100% Helvetica, sans-serif;
-  color: #1269b5; }
+  background-color: pink; }
 
 /* 嵌套规则
   将一套 CSS 样式嵌套进另一套样式中 */
@@ -102,13 +103,16 @@ body {
 /* @extend 继承 */
 /* %message-shared 被继承了，会输出到css
 占位符选择器本身不会被编译 */
-.message {
+.message, .success {
   border: 1px solid #ccc;
   padding: 10px;
   color: #333; }
 
 .message {
   color: pink; }
+
+.success {
+  background-color: #fff; }
 
 .father-div, .child-div {
   padding: 2px; }
@@ -268,9 +272,6 @@ transparentize:增加透明度
 /* @function 名称 (参数1，参数2){...} */
 /* @warn 提示信息会输出在命令行 */
 /* @error 报错会直接影响css输出 */
-.color-div {
-  background-color: black; }
-
 #sidebar {
   width: 240px; }
 

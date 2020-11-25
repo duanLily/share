@@ -182,6 +182,10 @@
 ### 1、特色功能 (Features)
 
 
+一般在文件的最外层（不在嵌套规则内）使用 @import，
+其实，也可以将 @import 嵌套进 CSS 样式或者 @media 中，
+与平时的用法效果相同，只是这样导入的样式只能出现在嵌套的层中。
+注意：不可以在混合指令 (mixin) 或控制指令 (control directives) 中嵌套 @import。
 
 ## API
   |-链接：https://www.sass.hk/
