@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>slice()</title>
+</head>
+<body>
+
+</body>
+<script>
+  /*
+   * slice()方法
+   * 返回指定数组的。一个片段或子数组。
+   * 参数1，参数2指定了片段的开始和结束的位置。（左闭右开）
+   *
+   * slice不会修改调用的数组
+   */
+  const d = [1, 2, 3, 4, 5];
+  console.log(d.slice(0, 3));// 截取索引0-3（不包括3）的元素
+  console.log(d.slice(3)); // 截取索引3以后的元素
+  console.log(d.slice(1, -1)); // 截取索引1至-1（不包括-1）的元素，-1指从右往左的第一个，即d中的5这个元素
+  console.log(d.slice(-3, -2)); // 截取索引-3至-2（不包括-2）的元素
+</script>
+</html>
