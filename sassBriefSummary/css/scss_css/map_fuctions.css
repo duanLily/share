@@ -1,28 +1,22 @@
+@charset "UTF-8";
 /*map-get(map, key):返回 Map 中 key 所对应的 value(值)。
   如没有对应的 key，则返回 null 值;*/
-$font-sizes: ("small": 12px, "normal": 18px, "large": 24px);
 .div {
-  $key:"small";
-  font-size: map-get($font-sizes, $key);
-}
+  font-size: 12px; }
 
 /*map-keys(map):返回 map 中所有的 key 组成的队列;*/
 /*map-keys($font-sizes);  //"small", "normal, "large"*/
-
 /*map-values(map):返回 map 中所有的 value 并生成一个队列;*/
 /*map-values($font-sizes); //12px, 18px, 24px*/
-
 /*map-has-key(map, key):判断 map 是否有对应的 key，
 存在返回 true，否则返回 false;*/
 /*map-has-key($font-sizes, "big"); //false*/
-
 /*map-merge(map1, map2):合并两个 map 形成一个新的 map 类型，
 即将 map2 添加到 map1的尾部;*/
 /*
 $font-sizes2: ("x-large": 30px, "xx-large": 36px);
 map-merge($font-sizes, $font-sizes2);
 //"small": 12px, "normal": 18px, "large": 24px, "x-large": 30px, "xx-large": 36px*/
-
 /*map-remove(map, keys...):移除 map 中的 keys，
 多个 key 使用逗号隔开;*/
 /*
@@ -30,3 +24,5 @@ $font-sizes: ("small": 12px, "normal": 18px, "large": 24px)
 map-remove($font-sizes, "small")//("normal": 18px, "large": 24px)
 map-remove($font-sizes, "small", "large")// ("normal": 18px)
 */
+
+/*# sourceMappingURL=map_fuctions.css.map */
