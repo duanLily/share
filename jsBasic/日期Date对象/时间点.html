@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>时间点</title>
+</head>
+<body>
+
+</body>
+<script>
+  var time = new Date("2020-11-26 00:00:00");
+  console.log(time.getTime());
+  var time_arr = [],
+    hour,
+    time1 = time.getTime();
+  console.log(time.toLocaleString('chinese', {
+    hour12: false
+  }));
+
+  for (var i = 0; i <= 30; i++) {
+    if (i == 0) {
+      hour = time.toLocaleString('chinese', {
+        hour12: false
+      }).slice(-8, -3);
+      time_arr.push(hour)
+    } else {
+      time1 += 300000;
+      time_arr.push(new Date(time1).toLocaleString('chinese', {
+        hour12: false
+      }).slice(-8, -3));
+    }
+  }
+  console.log(time_arr);
+</script>
+</html>

@@ -1,48 +1,47 @@
 /* scss注释
-   多行注释  编译后会输出到css里面(compressed情况下会省略)*/
+   多行注释  编译后会输出到css里面(compressed情况下会省略) */
 // 单行注释
 // 单行注释  编译后不会输出到css里面
 /*!强制输出的注释内容 编译后会输出到css里面*/
 
-/*变量*/
+/* 变量 */
 $font-stack: Helvetica, sans-serif;
 $primary-color: #1269b5;
 
 div.box {
-  background-color: $primary-color;
+  $bgc1:blue;
+  $bgc:pink !global;
+  color: $primary-color;
+  background-color: $bgc1;
 }
 
 body {
   font: 100% $font-stack;
-  color: $primary-color;
+  background-color: $bgc;
 }
 
-/*嵌套*/
+/* 嵌套规则
+  将一套 CSS 样式嵌套进另一套样式中 */
 .nav {
   height: 100px;
-
   ul {
     margin: 0;
-
     li {
       float: left;
       list-style: none;
       padding: 5px;
     }
-
     a {
       display: block;
       color: #fff;
       padding: 5px;
-
-      /*&嵌套时调用父选择器*/
+      /* & 嵌套时调用父选择器 */
       &:hover {
         background-color: #c6fff5;
         color: #ffffff;
       }
     }
   }
-
   & &-text {
     font-size: 15px;
   }
@@ -61,41 +60,104 @@ body {
   border: 1px solid #c6fff5 {
     left: 0;
     right: 0;
-  };
+  }
 }
 
-/*@mixin定义
-@include使用*/
-@mixin alert {
-  color: antiquewhite;
+/* 数字运算 */
+p {
+  width: 1in + 8pt;
+}
+
+/* 除法运算 /被视为除号的三种情况
+如果值，或值的一部分，是变量或者函数的返回值
+如果值被圆括号包裹
+如果值是算数表达式的一部分 */
+p {
+  $width: 1000px;
+  $font-size: 12px;
+  $line-height: 30px;
+  width: $width/2;
+  font: 10px/8px;
+  /* 使用变量，又要确保 / 不做除法运算而是完整地编译到 CSS 文件中，只需要用插值语句将变量包裹 */
+  font: #{$font-size}/#{$line-height};
+  padding: round(1.5)/2+px;
+  height: (500px/2);
+  margin-left: 5px + 8px/2px;
+}
+
+/* 字符串运算 */
+p:before {
+  content: "Foo " + Bar;
+  font-family: sans- + "serif";
+  /* 在有引号的文本字符串中使用插值语句可以添加动态的值 */
+  contents: "I ate #{5 + 10} pies!";
+  /* 空的值被视作插入了空字符串 */
+  $value: null;
+  contentss: "I ate #{$value} pies!";
+}
+
+/* @import 引入Partials   Partials使css模块化，更有条理性 */
+/* 文件名前加_，编译后文件就不会输出css
+如果需要导入 SCSS 或者 Sass 文件，但又不希望将其编译为 CSS，
+只需要在文件名前添加下划线，这样会告诉 Sass 不要编译这些文件，
+但导入语句中却不需要添加下划线 */
+@import 'base';
+
+.use-import {
+  background-color: $base-color;
+  color: rgb(255, 200, 0);
+}
+
+/* 使用插值语句导入文件 */
+$family: unquote("Droid+Sans");
+@import url("http://fonts.googleapis.com/css?family=#{$family}");
+/* @media
+允许其在 CSS 规则中嵌套。如果 @media 嵌套在 CSS 规则内，编译时，
+@media 将被编译到文件的最外层，包含嵌套的父选择器。
+可以使用 SassScript（比如变量，函数，以及运算符）代替条件的名称或者值 */
+$media: screen;
+$feature: orientation;
+$value: landscape;
+.sidebar {
+  width: 300px;
+  @media #{$media} and ($feature: $value) {
+    width: 500px;
+  }
+}
+
+/* @media 的 queries 允许互相嵌套使用，编译时，Sass 自动添加 and */
+@media screen {
+  .sidebar {
+    @media (orientation: landscape) {
+      width: 500px;
+    }
+  }
+}
+
+/* @extend 继承 */
+/* %message-shared 被继承了，会输出到css
+占位符选择器本身不会被编译 */
+%message-shared {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+// %equal-heights 没被继承了，不会输出到css
+%equal-heights {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.message {
+  @extend %message-shared;
+  color: pink;
+}
+.success{
+  @extend %message-shared;
   background-color: #fff;
-  a {
-    color: pink;
-  }
 }
 
-.alert-warning {
-  @include alert;
-}
-
-/*带参数的mixin  参数定义顺序和使用顺序一致,或者直接传键值对*/
-@mixin common-div($text-color,$background) {
-  color: $text-color;
-  background-color: $background;
-  a {
-    color: darken($text-color, 10%);
-  }
-}
-
-.use-div {
-  @include common-div(blue, pink);
-}
-
-.use-info {
-  @include common-div($background: blue, $text-color: pink);
-}
-
-/*@extend 继承*/
 .father-div {
   padding: 2px;
 }
@@ -105,14 +167,66 @@ body {
   background-color: lightblue;
 }
 
-/*@import引入Partials   Partials使css模块化，更有条理性*/
-@import 'base';
-
-.use-import {
-  background-color: $base-color;
-  color: rgb(255, 200, 0);
+/* @at-root
+直接移除了父选择，编译出来的CSS无任何嵌套，让代码更加的简单 */
+.foo {
+  @at-root .bar {
+    color: gray;
+    @at-root button {
+      color: red;
+      @at-root span {
+        color: orange;
+      }
+    }
+  }
 }
 
+/* 只会跳出选择器嵌套，而不能跳出 @media 或 @support，
+如果要跳出这两种，则需使用 @at-root(without: media)，
+@at-root(without: support)
+这个语法的关键词有四个：rule（表示常规）,
+all（表示所有）,  media（表示 media），
+ support（表示 support ）。
+ 我们默认@at-root( without: rule )
+ rule ：只能跳出选择器嵌套，不能跳出 @media 和 @support
+ media ：可以跳出 @media ，但是没有跳出父级选择器
+ support ：和 @at-root(without: media) 相似，只是跳出的是 @support
+ all ：是跳出所的指令和规则 */
+@media print {
+  .page {
+    width: 800px;
+    a {
+      color: red;
+      @at-root (without: media) {
+        span {
+          color: #00ffff;
+        }
+      }
+    }
+  }
+}
+
+/* 跳出 @media 和 父级嵌套，可以一次添加两个指令，两个指令用空格分隔 */
+@media print {
+  .page {
+    width: 800px;
+    a {
+      color: red;
+      //@at-root (without: media rule) {
+      @at-root (without: all) {
+        span {
+          color: #00ffff;
+        }
+      }
+    }
+  }
+}
+
+/* @debug 在控制台打印表达式的值 */
+@debug 10em + 12em;
+/* @warn 提示信息会输出在命令行 */
+
+/* @error 报错会直接影响css输出 */
 /*颜色表示方式:
 RGB:红(0-255) 绿(0-255) 蓝(0-255)
 RGBA:红(0-255) 绿(0-255) 蓝(0-255) 透明度透明度(0-1)
@@ -134,25 +248,150 @@ $ori-color: #ff0000;
 $ba-color: hsl(222, 100%, 50%);
 $light-color: lighten($ba-color, 30%);
 $darken-color: darken($ba-color, 20%);
-.ld-color-div{
+.ld-color-div {
   border: 1px solid $ba-color;
   background-color: $light-color;
   color: $darken-color;
 }
 
-$saturate-color:saturate($ba-color,50%);
-$desaturate-color:desaturate($ba-color,50%);
-.saturate-div{
+$saturate-color: saturate($ba-color, 50%);
+$desaturate-color: desaturate($ba-color, 50%);
+.saturate-div {
   background-color: $saturate-color;
 }
-.desaturate-div{
+
+.desaturate-div {
   background-color: $desaturate-color;
 }
 
-$fade-in-color:opacify($ba-color,0.3);
-$fade-out-color:transparentize($ba-color,0.2);
+$fade-in-color: opacify($ba-color, 0.3);
+$fade-out-color: transparentize($ba-color, 0.2);
 
-.opacify-color{
+.opacify-color {
   background-color: $fade-in-color;
   border: 1px solid $fade-out-color;
+}
+
+/*Interpolation 插值语句可以在选择器或属性名中使用变量 */
+$version: '0.0.1';
+/*当前版本号#{$version}*/
+$name: 'info';
+$attr: 'border';
+
+.div-#{$name} {
+  #{$attr}-color: pink;
+}
+
+/*控制指令*/
+/* @if */
+$theme: dark;
+.if-div {
+  @if $theme==light {
+    background-color: white;
+  } @else if $theme==dark {
+    background-color: black;
+  } @else {
+    background-color: grey;
+  }
+}
+
+/* @for */
+$cloumns: 4;
+/* @for $var from <开始值> through <结束值>{...} */
+@for $i from 1 through $cloumns {
+  .col-#{$i} {
+    width: 100%/$cloumns*$i;
+  }
+}
+
+/* @for $var from <开始值> to <结束值>{...} */
+@for $i from 1 to $cloumns {
+  .col-#{$i} {
+    width: 100%/$cloumns*$i;
+  }
+}
+
+/* @each */
+/* @each $var in $list {...} */
+$icons: success error warning;
+
+@each $icon in $icons {
+  .icon-#{$icon} {
+    background-image: url("../images/icons/#{$icon}.png");
+  }
+}
+
+/* @while */
+/* @while 条件 {...} */
+$i: 6;
+@while $i>0 {
+  .item-#{$i} {
+    width: 5px *$i;
+  }
+  $i: $i - 2;
+}
+
+/* @mixin定义
+@include使用 */
+
+@mixin alert {
+  color: antiquewhite;
+  background-color: #fff;
+  a {
+    color: pink;
+  }
+}
+
+.alert-warning {
+  @include alert;
+}
+
+/* 带参数的mixin  参数定义顺序和使用顺序一致,或者直接传键值对 */
+@mixin common-div($text-color,$background) {
+  color: $text-color;
+  background-color: $background;
+  a {
+    color: darken($text-color, 10%);
+  }
+}
+
+.use-div {
+  @include common-div(blue, pink);
+}
+
+.use-info {
+  @include common-div($background: blue, $text-color: pink);
+}
+
+/* 用户自定义函数 */
+/* @function 名称 (参数1，参数2){...} */
+/* @warn 提示信息会输出在命令行 */
+/* @error 报错会直接影响css输出 */
+$colors: (light:white, dark:black);
+@function getColor($key) {
+  @if not map-has_key($colors,$key) {
+    @warn "在 $colors 里面没有找到#{$key}这个 key"
+    //@error "在 $colors 里面没有找到#{$key}这个 key"
+  }
+  @return map_get($colors, $key)
+}
+
+.color-div {
+  //background-color: getColor(dark);
+  background-color: getColor(blue);
+}
+
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar {
+  width: grid-width(5);
+}
+
+#sidebar1 {
+  width: grid-width($n: 5);
 }

@@ -1,0 +1,50 @@
+$list: 3rem 2rem 0.5rem 1rem;
+$list1: 1rem 1rem 0.5rem;
+$li: 0 0;
+$li1: 1rem 1rem;
+.list-len {
+  /* length(list):返回列表的长度 */
+  border: length($list)+px;
+}
+
+.div {
+  /* nth(list, n):设置列表第 n 项的值为 value */
+  border: nth($list, 3);
+}
+
+.set-nth {
+  /* set-nth(list, n, value):设置列表第 n 项的值为 value */
+  padding: set-nth($list, 4, 2rem);
+}
+
+.index {
+  /*index(list, value):返回元素 value 在列表中的索引位置*/
+  border: index($list,3rem)+px;
+}
+
+.append {
+  /*append(list, value, [separator]):将单个值 value 添加到列表尾部。
+    separator 是分隔符，默认会自动侦测，或者指定为逗号或空格; */
+  padding: append($list1, 2rem);
+}
+
+.join {
+  /*join(list1, list2, [separator, bracketed]):合并两列表，
+  将列表 list2 添加到列表 list1 的末尾。separator 是分隔符，
+  默认会自动侦测，或者指定为逗号或空格。
+  bracketed 默认会自动侦测是否有中括号，可以设置为 true 或 false;*/
+  padding: join($li, $li1);
+}
+
+.zip {
+  /*zip(lists):将多个列表按照以相同索引值为一组，重新组成一个新的多维度列表;*/
+  padding: zip($li1, $li);
+}
+
+.is-bracketed {
+  /*is-bracketed(list):判断列表中是否有中括号;*/
+  //is-bracketed([a b c]);
+  //is-bracketed(a b c);
+}
+
+/*list-separator(list):返回一列表的分隔符类型。可以是空格或逗号;*/
