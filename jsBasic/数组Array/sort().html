@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sort()</title>
+</head>
+<body>
+
+</body>
+<script>
+  /*
+   * sort()方法
+   * 将数组中的元素排序，返回排序后的数组。
+   */
+  // 不带参数调用时，以字母表顺序排序（有必要时将临时转化为字符串进行比较）
+  const b = [1, 55, 77542, 12, 32, 23, undefined]; // 数组中存在undefined元素，会默认排到数组的尾部
+  console.log(b.sort());   // 按字母顺序表排序
+  b.sort((a, b) => {
+    return a - b;
+  });                       // 升序
+  console.log(b);
+  b.sort((a, b) => {
+    return b - a;
+  });                      // 降序
+  console.log(b);
+  // 是否区分大小写排序
+  const bb = ['ant', 'Dog', 'cat', 'Bug'];
+  console.log(bb.sort());      // 区分大小写的排序
+  bb.sort((s, t) => {          // 不区分大小写的排序
+    const a = s.toLowerCase();
+    const b = t.toLowerCase();
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+  });
+  console.log(bb);
+</script>
+</html>

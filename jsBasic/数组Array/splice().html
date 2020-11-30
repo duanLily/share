@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>splice()</title>
+</head>
+<body>
+
+</body>
+<script>
+  /*
+   * splice()方法
+   * 在数组中插入或删除元素，返回一个由删除元素组成的数组，没有删除元素时，返回一个空数组。
+   * 参数1，指定了插入或删除的起始位置。
+   * 参数2，指定了应该从数组中删除的元素个数。
+   * 之后的参数（任意个数，依次插入就好），指定了应该从参数1位置开始插入的数组元素。
+   *
+   * splice 会修改调用的数组
+   */
+  const e = [1, 2, 3, 4, 5, 6, 7, 8];
+  console.log(e.splice(4)); // 参数2省略，将删除起始位置至数组结尾的所有元素  e=[1,2,3,4]
+  console.log(e.splice(1, 2)); // 索引1开始，删除2个元素  e=[1,4]
+  console.log(e.splice(1, 1)); // 索引1开始，删除1个元素  e=[1]
+  // splice 不会扁平化数组，也不会扁平化数组的数组
+  console.log(e.splice(0, 1, 1, 2, [1, [2, [7, 9], 3]], 'a', 'b', 'c')); // 索引1开始，删除1个元素  e=[1,2,1,2,3,'a','b','c']
+  console.log("splice 会不会扁平化数组：");
+  console.log(e);
+</script>
+</html>
