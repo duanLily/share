@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>多终端通讯</title>
+</head>
+<body>
+<ul id="content"></ul>
+<input type="text" id="msg">
+<button onclick="send()">发送</button>
+</body>
+<script>
+  var ws = new WebSocket('ws:localhost:3000');
+  var inputNode = document.getElementById("msg");
+  var content = document.getElementById("content");
+
+  ws.onmessage = function (msg) {
+    console.log(msg)
+    content.innerHTML+='<li>'+msg.data+'</li>'
+  };
+
+  function send() {
+    ws.send(inputNode.value);
+  }
+</script>
+</html>

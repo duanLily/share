@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  // 创建Websocket对象
+  var ws = new WebSocket("ws://localhost:3000");
+  ws.onopen = function (res) {
+    console.log("连接成功");
+    console.log(res);
+  };
+
+  // 监听建立连接
+  ws.onmessage = function (res) {
+    console.log("有新消息");
+    console.log(res);
+  };
+
+  //监听有新消息
+  ws.onmessage = function (res) {
+    console.log("有新消息");
+    console.log(res);
+  }
+</script>
+</html>
