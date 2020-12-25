@@ -17,13 +17,19 @@
    *
    * splice 会修改调用的数组
    */
-  const e = [1, 2, 3, 4, 5, 6, 7, 8];
+/*  const e = [1, 2, 3, 4, 5, 6, 7, 8];
   console.log(e.splice(4)); // 参数2省略，将删除起始位置至数组结尾的所有元素  e=[1,2,3,4]
   console.log(e.splice(1, 2)); // 索引1开始，删除2个元素  e=[1,4]
   console.log(e.splice(1, 1)); // 索引1开始，删除1个元素  e=[1]
   // splice 不会扁平化数组，也不会扁平化数组的数组
   console.log(e.splice(0, 1, 1, 2, [1, [2, [7, 9], 3]], 'a', 'b', 'c')); // 索引1开始，删除1个元素  e=[1,2,1,2,3,'a','b','c']
   console.log("splice 会不会扁平化数组：");
-  console.log(e);
+  console.log(e);*/
+
+  /* 三，替换 */
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+  console.log(arr);
+  console.log(arr.splice(2, 1, "hello"));
+  console.log(arr);
 </script>
 </html>
