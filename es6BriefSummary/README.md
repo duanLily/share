@@ -1,16 +1,16 @@
 # es6BriefSummary  ES6简单总结
  ## List
-  |-1、变量
+  |-1、variable 变量
     |-var    重复声明、函数级
     |-let    不能重复声明、块级、当做变量
     |-const  不能重复声明、块级、当做常量
-  |-2、函数
+  |-2、function 函数
     |-简写
       i.只有一个参数，()可省略
       ii.只有一个return，{}可省略
     |-参数收集、扩展   ...args   **Rest Parameter 必须是最后一个
     |-默认参数  传值时，默认值；不传值，默认默认值
-  |-3、数组
+  |-3、array 数组
     |-map      映射
     |-reduce   汇总  一堆-->一个
     |-filter   过滤  一堆-->符合条件的
