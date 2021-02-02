@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--1、使用自定义属性保存地址
+    2、监听窗口元素滚动事件-->
+<div class="scroll-con">
+  <h1>段落和段落之间保有空隙</h1>
+  <p>
+    善于沟通、具有良好微博第一批种子用户，活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；的团队合作能力和人际交往能力;微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+    善于沟通、具有良好的团队合作能力和人际交往能力微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+  </p> 2、段落和段落之间保有空隙 -->
+  <p>
+    善于沟通、具有良好微博第一批种子用户，活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；的团队合作能力和人际交往能力;微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+    善于沟通、具有良好的团队合作能力和人际交往能力微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+  </p> 2、段落和段落之间保有空隙 -->
+  <p>
+    善于沟通、具有良好微博第一批种子用户，活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；的团队合作能力和人际交往能力;微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+    善于沟通、具有良好的团队合作能力和人际交往能力微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+  </p> 2、段落和段落之间保有空隙 -->
+  <p>
+    善于沟通、具有良好微博第一批种子用户，活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；的团队合作能力和人际交往能力;微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+    善于沟通、具有良好的团队合作能力和人际交往能力微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+  </p> 2、段落和段落之间保有空隙 -->
+  <p>
+    善于沟通、具有良好微博第一批种子用户，活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；的团队合作能力和人际交往能力;微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+    善于沟通、具有良好的团队合作能力和人际交往能力微博第一批种子用户，
+    活跃于各种论坛，天涯，知乎，豆瓣，扒皮小能手一枚；
+    文笔流畅，多次在校内刊物上发表文章，熟练软文写作；
+  </p>
+  <img class="scroll-con-img" data-src="imges/Image.png" height="498" width="1066"/>
+  <img class="scroll-con-img" data-src="imges/Image [4].png" height="206" width="420"/>
+  <img class="scroll-con-img" data-src="imges/Image [3].png" height="486" width="696"/>
+  <img class="scroll-con-img" data-src="imges/Image [2].png" height="315" width="500"/>
+  <img class="scroll-con-img" data-src="imges/Image [1].png" height="463" width="387"/>
+</div>
+</body>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .scroll-con {
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .scroll-con-img {
+    width: 80%;
+    opacity: 0;
+    transform: translateX(50%);
+    transition: all 1s;
+  }
+
+  .fade {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 1s;
+  }
+</style>
+<script>
+  const con = document.querySelector('.scroll-con');
+  const imgs = document.querySelectorAll('.scroll-con-img');
+  // 方法一 ：判断边界，并加载
+  con.addEventListener("scroll", () => {
+    imgs.forEach(img => {
+      const imgTop = img.getBoundingClientRect().top;
+      const conTop = con.getBoundingClientRect().top;
+      if (imgTop - conTop < con.clientHeight) {
+        const src = img.getAttribute("data-src");
+        img.setAttribute('src', src);
+        img.classList.add('fade');
+      }
+    })
+  })
+  // 方法二 ：
+  const options = {
+    root: con,
+    threshold: 1,
+    rootMargin: "0px"
+  };
+
+  function lazyload(target) {
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const src = img.getAttribute("data-src");
+          img.setAttribute("src", src);
+          img.classList.add("fade");
+          observer.disconnect();
+        }
+      })
+    }, options)
+    io.observe(target);
+  }
+imgs.forEach(lazyload);
+</script>
+</html>
