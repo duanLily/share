@@ -1,0 +1,20 @@
+@import './dragon-icon/iconfont.css';
+
+.dragon-app .icon-dragon{
+  font-size: 1rem;
+}
+
+.dragon-app [class^="icon-dragon-"],
+.dragon-app [class*="icon-dragon-"]/*这里有空格*/
+ {
+  font-family: "icon-dragon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: baseline;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+}

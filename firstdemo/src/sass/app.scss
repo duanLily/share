@@ -1,0 +1,10 @@
+
+// @import './variables.scss'; 已全局引入
+@import './reset.scss';
+@import './element-reset.scss';
+@import './themes/blue.scss'; 
+@import './themes/red.scss'; // TODO:换成切换主题再引入
+@import './components/envInfo.scss';
+// 布局
+@import './direction/ltr.scss';
+@import './direction/rtl.scss'; // TODO:换成切换再引入

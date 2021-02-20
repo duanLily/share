@@ -1,0 +1,165 @@
+// 绿色边框+绿色背景
+.el-button--success,
+.el-button--success:hover,
+.el-tag--dark.el-tag--success{
+  @include el_background_green;
+  @include el_border_green;
+}
+// 绿色
+.el-link.el-link--success{
+  color: $base-color-green;
+}
+.el-link.el-link--success:hover:after{
+  @include el_border_green;
+}
+// 橙色
+.el-button--warning,
+.el-button--warning:hover,
+.el-tag--dark.el-tag--warning{
+  @include el_background_orange;
+  @include el_border_orange;
+}
+.el-link.el-link--warning{
+  color: $base-color-orange;
+}
+.el-link.el-link--warning:hover:after{
+  @include el_border_orange;
+}
+
+// 危险色
+.el-button--danger,
+.el-button--danger:hover,
+.el-tag--dark.el-tag--danger{
+  @include el_background_red;
+  @include el_border_red;
+}
+.el-link.el-link--danger{
+  color: $base-color-red;
+}
+.el-link.el-link--danger:hover:after{
+  @include el_border_red;
+}
+
+// 正常的边框颜色
+.el-range-editor.is-active, 
+.el-range-editor:focus,
+.el-input__inner,
+.el-button--default {
+  @include el_border_gray;
+}
+
+// 悬浮边框色
+.el-button--default:hover,
+.el-button--default:focus,
+.el-input:not(.is-disabled) .el-input__inner:hover,
+.el-input__inner:focus{
+  @include el_border_gray2;
+}
+
+// 重要文本颜色
+.el-button--default,
+.el-button--default:hover,
+.el-button--default:focus,
+.el-pagination__jump, 
+.el-pagination__total,
+.el-pager li,
+.el-dialog .el-dialog__header .el-dialog__title{
+  color: $base-color-text-primary;
+}
+
+
+.el-input__clear,
+.el-input__clear:hover{
+  color: $base-color-gray2;
+}
+// 无背景色
+.el-button--default:hover, 
+.el-button--default:focus,
+.el-input-number__increase, 
+.el-input-number__decrease{
+  background: none;
+}
+
+// 白色字体
+.el-pagination.is-background .el-pager li:not(.disabled).active:hover,
+.el-button--primary,
+.el-button--primary:hover,
+.el-button--primary:focus{
+  color: $base-color-white;
+}
+
+// 加载样式 -旋转的图标颜色
+.el-loading-spinner .path{
+  stroke: $base-main-color;
+}
+// 主题边框+主题背景色
+.el-button--primary,
+.el-switch.is-checked .el-switch__core,
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-radio__input.is-checked .el-radio__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  @include el_container;
+}
+
+// 主题色
+.el-button--text,
+.el-checkbox__input.is-checked + .el-checkbox__label,
+.el-loading-spinner .el-loading-text,
+.el-loading-spinner i,
+.el-radio__input.is-checked + .el-radio__label,
+.el-cascader-node.in-active-path,
+.el-cascader-node.is-selectable.in-checked-path,
+.el-cascader-node.is-active,
+.el-dropdown-menu__item:focus,
+.el-dropdown-menu__item:not(.is-disabled):hover,
+.el-tabs__item.is-active,
+.el-upload--picture-card:hover,
+.el-tabs__item:hover,
+.el-upload:focus,
+.el-radio-button__orig-radio:not(:checked) + .el-radio-button__inner:hover,
+.el-button--default:active,
+.el-tag:not(.el-tag--danger):not(.el-tag--success):not(.el-tag--info):not(.el-tag--warning):not(.el-tag--dark),
+.el-link.el-link--primary,
+.el-link.el-link--default:hover,
+.el-select-dropdown__item.selected,
+.time-select-item.selected:not(.disabled),
+.el-time-spinner__item.active:not(.disabled),
+.el-pager li.active,
+.el-pagination.is-background .el-pager li:not(.disabled):hover{
+  color: $base-main-color;
+}
+// 主题边框色
+.el-checkbox__inner:hover,
+.el-select .el-input.is-focus .el-input__inner,
+.el-range-editor.is-active:hover,
+.el-range-editor.is-activ,
+.el-upload--picture-card:hover,
+.el-upload:focus,
+.el-textarea__inner:focus,
+.el-button--default:active,
+.el-range-editor.is-active,
+.el-link.el-link--primary,
+.el-link.el-link--primary:hover:after,
+.el-link.el-link--default:hover:after,
+.el-slider__button{
+  @include el_border;
+}
+// 主题背景色
+.el-tabs__active-bar,
+.el-slider__bar,
+.el-pagination.is-background .el-pager li:not(.disabled).active{
+  @include el_background;
+}
+
+// 主题边框+主题背景+阴影
+.el-radio-button__orig-radio:checked + .el-radio-button__inner {
+  @include el_container;
+  @include el_box_show;
+}
+
+// 主题色悬浮
+.el-button--primary:hover,
+.el-button--primary:focus{
+  background-color: $base-main-color-hover;
+  border-color: $base-main-color-hover;
+}

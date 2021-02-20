@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button onclick="getFirstDayOfWeek()">本周
+  <div id="week"></div>
+  <div id="week1"></div>
+</button>
+<button onclick="getFirstDayOfMonth()">本月
+  <div id="month"></div>
+  <div id="month1"></div>
+</button>
+<button onclick="getFirstDayOfQuarter()">本季
+  <div id="season"></div>
+  <div id="season1"></div>
+</button>
+</body>
+<script>
+  //获取本星期第一天
+  function getFirstDayOfWeek() {
+    console.log("获取本星期第一天")
+    var now = new Date();
+    var day = now.getDate(), //获取本月几号
+      weekday = now.getDay(), //获取星期几
+      month = now.getMonth(),//获取本月
+      year = now.getFullYear();//获取本年
+    if (day > weekday - 1) {
+      now.setDate(day - weekday - 1);
+    } else {
+      //月份从0开始
+      if (month == 0) {
+        now.setYear(year - 1);
+        now.setMonth(11);
+        now.setDate(weekday - day - 1);
+      } else {
+        now.setMonth(month - 1);
+        now.setDate(weekday - day - 1);
+      }
+    }
+    document.getElementById("week").innerHTML = now;
+    document.getElementById("week1").innerHTML = this.timeFormate(now);
+    // return this.timeFormate(now);
+  }
+
+  //获取本月第一天
+  function getFirstDayOfMonth() {
+    var now = new Date();
+    now.setDate(1);
+    document.getElementById("month").innerHTML = now;
+    document.getElementById("month1").innerHTML = this.timeFormate(now);
+    // return this.timeFormate(now);
+  }
+
+  //获取本季度第一天
+  function getFirstDayOfQuarter() {
+    var now = new Date();
+    var month = now.getMonth();
+    if (month < 3) {
+      now.setMonth(0);
+    } else if (2 < month && month < 6) {
+      now.setMonth(3);
+    } else if (5 < month && month < 9) {
+      now.setMonth(6);
+    } else if (8 < month && month < 11) {
+      now.setMonth(9);
+    }
+    now.setDate(1);
+    document.getElementById("season").innerHTML = now;
+    document.getElementById("season1").innerHTML = this.timeFormate(now);
+    // return this.timeFormate(now);
+  }
+
+  //时间格式化
+  function timeFormate(date) {
+    if (!date || typeof(date) === "string") {
+      this.error("参数异常，请检查...");
+    }
+    var year = date.getFullYear(); //年
+    var month = date.getMonth() + 1; //月
+    var day = date.getDate(); //日
+    var hh;
+    if (date.getMinutes() / 60 > 1) {
+      hh += Math.floor(date.getMinutes()) / 60;
+    }
+    var clock = year + "-";
+    if (month < 10)
+      clock += "0";
+    clock += month + "-";
+    if (day < 10)
+      clock += "0";
+    clock += day + " ";
+    return clock;
+  }
+</script>
+</html>
