@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>合并单元格</title>
+</head>
+<body>
+<!--
+1、跨行合并  rowspan="合并单元格的个数"
+2、跨列合并  colspan="合并单元格的个数"
+
+目标单元格：（写合并代码）
+跨行：最上侧单元格为目标单元格
+跨列：最左侧单元格为目标单元格
+-->
+<table border="2px">
+  <tr>
+    <!--表头单元格-->
+    <th>姓名</th>
+    <th>性别</th>
+    <th>年龄</th>
+    <th colspan="2">姓名、性别</th>
+<!--    <th>性别</th>-->
+    <th>年龄</th>
+  </tr>
+  <tr>
+    <td rowspan="3">邓伦</td>
+    <td>男</td>
+    <td>18</td>
+    <td>邓伦</td>
+    <td>男</td>
+    <td>18</td>
+  </tr>
+  <tr>
+<!--    <td>肖战</td>-->
+    <td>男</td>
+    <td>18</td>
+    <td>肖战</td>
+    <td>男</td>
+    <td>18</td>
+  </tr>
+</table>
+</body>
+<script>
+
+</script>
+</html>
