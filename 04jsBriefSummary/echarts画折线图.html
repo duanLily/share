@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+  <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+  <!-- 引入 jquery 和echarts -->
+</head>
+<body>
+<button onclick="dowload()"></button>
+<div id="container" style="height: 800px;width:1200px;margin-left:300px"></div>
+<!-- 用来画折线图的div -->
+
+
+<script type="text/javascript">
+  var YY = [1, 2, 3, 4, 5];//y轴的数据
+  var XX = ['坐标1', '坐标2', '坐标3', '坐标4', '坐标5'];//x轴的数据
+  function fetchData() {
+//异步加载数据，此处可以进行ajax请求，然后返回数据
+    setTimeout(function () {
+
+      myChart.hideLoading();//关闭动画
+
+      //赋值
+      myChart.setOption({
+        xAxis: {data: XX},
+        series: [{
+
+          data: YY,
+        }]
+      });
+    }, 2000);
+  }
+
+
+  // 初始 option
+  var myChart = echarts.init(document.getElementById("container"));
+  option = null;
+  option = {
+    title: {
+      //标题
+      text: '折线图',// 主标题
+      subtext: '练习',// 副标题
+
+      //标题位置
+      x: 'center',
+      y: '10',
+
+
+      // 主标题文字设置
+      textStyle: {
+        fontSize: 30,					// 文字大小
+        fontWeight: 900,				// 文字加粗
+        color: 'rgb(13, 14, 78)'         // 文字颜色
+      },
+
+      // 副标题文字颜色
+      subtextStyle: {
+        color: '#aaa'          // 文字颜色
+      }
+    },
+
+    color: ['rgba(51, 102, 255,0.8)'],//折线颜色
+
+    //工具栏
+    toolbox: {
+      show: true,
+      itemSize: 20,
+      x: 'center',
+      y: 70,
+      feature: {
+
+        //自定义工具栏，
+        myTool1: {
+          show: true,
+          title: 'Excel导出',
+
+          //自处可以放图片
+          icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+          onclick: function () {
+
+            //列标题，逗号隔开，每一个逗号就是隔开一个单元格
+            var str = 'x轴,y轴\n';
+            //增加\t为了不让表格显示科学计数法或者其他格式
+            for (var i = 0; i < XX.length; i++) {
+              str += XX[i] + '\t,' + YY[i];
+              str += '\n';
+            }
+
+
+            //encodeURIComponent解决中文乱码
+            var uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
+            //通过创建a标签实现
+            var link = document.createElement("a");
+            link.href = uri;
+            //对下载的文件命名
+            link.download = "json数据表.csv";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        },
+
+        lineChart: {},// '折线图切换',
+        barChart: {},// '柱形图切换',
+        saveAsImage: {},//保存为图片,
+
+        //自定义数据视图
+        dataView: {
+          show: true,
+          readOnly: true,
+          title: '数据视图',
+          optionToContent: function (opt) {
+            var axisData = opt.xAxis[0].data;
+            var series = opt.series;
+            var tdHeads = '<td   style="width:400px;">x坐标轴</td>';
+            series.forEach(function (item) {
+              tdHeads += '<td  style="width:400px;">y坐标轴</td>';
+            });
+            // var table = '<table border="1" style="margin-left:20px;border-collapse:collapse;font-size:14px;text-align:center"><tbody><tr>'+tdHeads+'</tr>';
+            var table = '<table border="1"  align="center"  style="width:800px;color:black"><tbody><tr>' + tdHeads + '</tr>';
+            var tdBodys = '';
+            for (var i = 0, l = axisData.length; i < l; i++) {
+              for (var j = 0; j < series.length; j++) {
+                if (typeof(series[j].data[i]) == 'object') {
+                  tdBodys += '<td  style="width:400px;">' + series[j].data[i].value + '</td>';
+                } else {
+                  tdBodys += '<td  style="width:400px;">' + series[j].data[i] + '</td>';
+                }
+              }
+              table += '<tr><td >' + axisData[i] + '</td>' + tdBodys + '</tr>';
+              tdBodys = '';
+            }
+            table += '</tbody></table>';
+            return table;
+          }
+        },
+        magicType: {type: ['line', 'bar']}
+      }
+    },
+
+    //x轴设置
+    xAxis: {
+      name: 'x坐标轴',
+      type: 'category',
+      nameTextStyle: {
+        fontSize: 30,//坐标轴名字字体大小
+      },
+      data: [],
+      axisLabel: {
+        interval: 0,//0表示让所有坐标值全部显示，数字表示间隔
+        rotate: 0,//让坐标值旋转一定的角度，当x轴数据文字过长，可让数据倾斜显示
+        textStyle: {
+          color: 'red',  //更改坐标轴文字颜色
+          fontSize: '30',      //更改坐标轴文字大小
+        }
+      },
+    },
+    yAxis: {
+      name: 'y坐标轴',
+      show: true,
+      type: 'value',
+      nameTextStyle: {
+        fontSize: 30,//坐标轴名字字体大小
+      },
+      //隐藏刻度线
+      axisLine: {
+        show: false,
+      },
+
+      //隐藏轴线
+      axisTick: {
+        show: false,
+      },
+
+      axisLabel: {
+        textStyle: {
+          color: 'red',  //更改坐标轴文字颜色
+          fontSize: '30',      //更改坐标轴文字大小
+        }
+      },
+    },
+
+    //生成的折线图的位置
+    grid: {
+      top: '150',
+      left: '30',
+      right: '130',
+      containLabel: true//为ture才会生效以上的设置
+    },
+
+    // 标注  即 最大值，最小值的样式设置
+    markPoint: {
+      // color: 'rgb(30, 144, 255)',
+      symbol: 'pin',         // 标注类型
+      symbolSize: 123,            // 标注大小，半宽（半径）参数，当图形为方向或菱形则总宽度为symbolSize * 2
+    },
+
+    //提示样式设置   即鼠标在折线图上移动时的提示
+    tooltip: {
+      trigger: 'axis',           // 触发类型，坐标轴触发
+      showDelay: 20,             // 显示延迟，添加显示延迟可以避免频繁切换，单位ms
+      hideDelay: 200,            // 隐藏延迟，单位ms
+      transitionDuration: 0.4,  // 动画变换时间，单位s
+      backgroundColor: 'rgba(153, 0, 255,0.7)',     // 提示背景颜色，默认为透明度为0.7的黑色
+      borderColor: '#333',       // 提示边框颜色
+      borderRadius: 4,           // 提示边框圆角，单位px，默认为4
+      borderWidth: 0,            // 提示边框线宽，单位px，默认为0（无边框）
+      padding: [5, 5, 5, 0],                // 提示内边距，单位px，默认各方向内边距为5，
+      // 接受数组分别设定上右下左边距，同css
+      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+        type: 'cross',         // 默认为直线，可选为：'line' | 'shadow'
+        lineStyle: {          // 直线指示器样式设置
+          width: 1,
+          fontSize: 30,
+        },
+        shadowStyle: {                       // 阴影指示器样式设置
+          width: 'lift',                   // 阴影大小
+          color: 'rgba(150,150,150,0.3)'  // 阴影颜色
+        }
+      },
+      formatter: function (data) {
+        //自定义显示内容
+        var rsl = '';
+        rsl = "x轴的数据 ： " + data[0].name;
+        rsl += "<br/>y轴的数据 ： " + data[0].data;
+        return rsl;
+      },
+      textStyle: {
+        //提示内容字体设置
+        color: '#fff'
+      }
+    },
+
+    series: [
+      {
+        type: 'line',
+        lineStyle: {
+          width: 3,  // 设置线宽
+          type: 'solid'  //'dotted'虚线 'solid'实线
+        },
+        smooth: true,
+        //  color:'red',
+        symbol: 'star',//拐点样式
+        // symbolSize:30,
+        symbolSize: 1,//拐点大小
+        markLine: {data: [{type: 'average', name: '平均值'}]},
+        markPoint: {
+          itemStyle: {
+            borderColor: '#000',//图形的描边颜色。支持的颜色格式同 color，不支持回调函数。
+            borderWidth: 0,//描边线宽。为 0 时无描边。
+            borderType: 'solid' //柱条的描边类型，默认为实线，支持 ‘solid’, ‘dashed’, ‘dotted’。
+          },
+          data: [
+            {type: 'max', name: '最大值'},
+            {type: 'min', name: '最小值'}
+          ],
+        },
+      },
+
+    ]
+  };
+  myChart.showLoading();//启动动画
+  fetchData();//获取值
+  if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+  }
+</script>
+</body>
+</html>

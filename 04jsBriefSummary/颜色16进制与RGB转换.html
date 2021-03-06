@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RGB颜色、16进制转换</title>
+</head>
+<body>
+<table border="2px">
+  <tr>
+    <td>色值</td>
+    <td>结果</td>
+  </tr>
+  <tr>
+    <td>
+      <button onclick="ToRGB('#00a6a6')">'#00a6a6'</button>
+    </td>
+    <td rowspan="3"><span id="id1"></span><br></td>
+  </tr>
+  <tr>
+    <td>
+      <button onclick="ToRGB('#0035bf')">'#0035bf'</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button onclick="ToRGB('#002ea6')">'#002ea6'</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button onclick="RGBTo('RGB(0,166,166)')">'RGB(0,166,166)'</button>
+    </td>
+    <td><span id="id2"></span></td>
+  </tr>
+</table>
+</body>
+<script>
+  // 十六进制颜色值的正则表达式
+  const reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+
+  /*RGB颜色转换为16进制*/
+  function RGBTo(val) {
+    console.log("RGB颜色转换为16进制");
+    console.log(val);
+    if (/^(rgb|RGB)/.test(val)) {
+      let aColor = val.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(",");
+      let strHex = "#";
+      for (let i = 0; i < aColor.length; i++) {
+        let hex = Number(aColor[i]).toString(16);
+        if (hex === "0") {
+          hex += hex;
+        }
+        strHex += hex;
+      }
+      if (strHex.length !== 7) {
+        strHex = val;
+      }
+      console.log(strHex);
+      this.document.getElementById("id2").innerText = strHex;
+      return strHex;
+    } else if (reg.test(val)) {
+      var aNum = val.replace(/#/, "").split("");
+      if (aNum.length === 6) {
+        console.log(val);
+        this.document.getElementById("id2").innerText = val;
+        return val;
+      } else if (aNum.length === 3) {
+        var numHex = "#";
+        for (var i = 0; i < aNum.length; i += 1) {
+          numHex += (aNum[i] + aNum[i]);
+        }
+        console.log(val);
+        this.document.getElementById("id2").innerText = numHex;
+        return numHex;
+      }
+    } else {
+      console.log(val);
+      this.document.getElementById("id2").innerText = val;
+      return val;
+    }
+  }
+
+  //-------------------------------------------------
+
+  // 16进制颜色转为RGB格式
+  function ToRGB(val) {
+    console.log("16进制颜色转为RGB格式");
+    console.log(val);
+    let sColor = val.toLowerCase();
+    if (sColor && reg.test(sColor)) {
+      if (sColor.length === 4) {
+        let sColorNew = "#";
+        for (var i = 1; i < 4; i += 1) {
+          sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+        }
+        sColor = sColorNew;
+      }
+      //处理六位的颜色值
+      let sColorChange = [];
+      for (let i = 1; i < 7; i += 2) {
+        sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
+      }
+      console.log("RGB(" + sColorChange.join(",") + ")");
+      this.document.getElementById('id1').innerText = "RGB(" + sColorChange.join(",") + ")";
+      return "RGB(" + sColorChange.join(",") + ")";
+    } else {
+      console.log(sColor);
+      this.document.getElementById('id1').innerText = sColor;
+      return sColor;
+    }
+  }
+</script>
+</html>

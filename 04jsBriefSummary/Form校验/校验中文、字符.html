@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>校验中文、字符</title>
+</head>
+<body>
+
+</body>
+<script>
+  /**
+   * 中文返回true
+   * @param val 校验值
+   * @returns {boolean}
+   */
+  function checkChinese(val) {
+    let reg1 = /^[\u4e00-\u9fa5]{0,}$/g;
+    console.log('中文', reg1.test(val));
+    return reg1.test(val);
+  }
+
+  /**
+   * 字符返回true
+   * @param val
+   * @returns {boolean}
+   */
+  function checkABC(val) {
+    let reg = /[^\d]/g;
+    console.log('字符', reg.test(val));
+    return reg.test(val);
+  }
+</script>
+</html>
