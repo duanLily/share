@@ -1,4 +1,5 @@
 # CSS
+层叠样式表（Cascading Style Sheet）
 书写顺序：
 1、布局定位属性：
   display
@@ -29,7 +30,7 @@
   box-shadow
   text-shadow
   ...
-  
+CSS语法规则：选择器以及一条或多条声明
  ## 选择器
    |-基础
    |-复合

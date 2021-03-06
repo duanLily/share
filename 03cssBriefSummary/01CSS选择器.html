@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01CSS基础选择器</title>
+</head>
+<body>
+<!--选择器：
+基础选择器：标签选择器（标签名作为选择器）、类选择器、ID选择器、通配符选择器；
+复合选择器：
+-->
+<p id="man">男</p>
+<p>男</p>
+<p>男</p>
+<div class="woman">女</div>
+<div>女</div>
+<div>女</div>
+<div class="box red"></div>
+<div class="box green"></div>
+<div class="box red"></div>
+</body>
+<style>
+    p {
+        color: pink;
+    }
+
+    div {
+        color: cornflowerblue;
+    }
+
+    /*类选择器：样式点定义，结构类调用，一个或多个，开发最常用*/
+    .woman {
+        color: red;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+    }
+
+    .red {
+        background: red;
+    }
+
+    .green {
+        background: green;
+    }
+
+    /*id选择器口诀：样式#定义，结构id调用，只能调用一次，别人切勿调用*/
+    #man {
+        color: #00ff48;
+    }
+</style>
+</html>
